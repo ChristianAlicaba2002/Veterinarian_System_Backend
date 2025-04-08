@@ -16,7 +16,7 @@ class ClientController extends Controller
         $this->RegisterClient = $RegisterClient;
     }
 
-    public function getAllClients()
+    public function getAliClients()
     {
         $clients = Client::all();
     

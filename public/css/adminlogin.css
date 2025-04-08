@@ -1,0 +1,76 @@
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #4a6da7 0%, #6c8fc7 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.login-container {
+    display: flex;
+    max-width: 900px;
+    width: 90%;
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+.login-image {
+    flex: 1;
+    background: url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80') center/cover;
+    min-height: 500px;
+}
+.login-card {
+    flex: 1;
+    padding: 2rem;
+}
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.login-header h2 {
+    color: #4a6da7;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.login-header p {
+    color: #6c757d;
+}
+.password-field {
+    position: relative;
+}
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d;
+}
+.form-control {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #dee2e6;
+}
+.form-control:focus {
+    border-color: #4a6da7;
+    box-shadow: 0 0 0 0.2rem rgba(74, 109, 167, 0.25);
+}
+.btn-primary {
+    background-color: #4a6da7;
+    border: none;
+    padding: 0.75rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+}
+.btn-primary:hover {
+    background-color: #3a5a8f;
+}
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+    .login-image {
+        min-height: 200px;
+    }
+}

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/adminlogin.css')}}">
     <title>PawfectCare - Admin</title>
     <style>
-       
+
     </style>
 </head>
 <body>
@@ -18,12 +18,12 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    
+
     <div class="login-container">
         <div class="login-image"></div>
         <div class="login-card">
             <div class="login-header">
-                <h2>PawfectCare</h2>
+                <h2>FurEver</h2>
                 <p>Welcome back, Admin</p>
             </div>
             <form action="{{ route('admin.login') }}" method="POST">
@@ -52,7 +52,7 @@
             const password = document.getElementById('password');
             const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
             password.setAttribute('type', type);
-            
+
             this.classList.toggle('bi-eye');
             this.classList.toggle('bi-eye-slash');
         });

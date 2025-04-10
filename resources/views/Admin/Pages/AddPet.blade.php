@@ -30,15 +30,15 @@
     document.getElementById('petImage').addEventListener('change', function(e) {
         const preview = document.getElementById('preview');
         const previewContainer = document.getElementById('imagePreview');
-        
+
         if (this.files && this.files[0]) {
             const reader = new FileReader();
-            
+
             reader.onload = function(e) {
                 preview.src = e.target.result;
                 previewContainer.classList.remove('d-none');
             }
-            
+
             reader.readAsDataURL(this.files[0]);
         }
     });

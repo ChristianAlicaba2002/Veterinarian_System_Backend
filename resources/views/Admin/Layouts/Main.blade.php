@@ -9,46 +9,71 @@
     <title>VetCare Admin</title>
     <style>
         body {
-            background-color: #f8f9fa;
+            font-family: 'Montserrat', sans-serif;
         }
-
 
         .content-wrapper {
             margin-left: 250px;
-            transition: all 0.3s;
+            transition: margin-left 0.3s ease;
+            background-color: #ffffff;
+            box-sizing: border-box;
         }
 
         .top-header {
             position: fixed;
             width: 100%;
-            top: 0;
             z-index: 1000;
             padding: 0.5rem 1rem;
-            background-color: #fff;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            color: #512da8;
+            border-bottom: 2px solid #b39ddb;
+        }
+
+        .top-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin: 0;
         }
 
         .stats-card {
-            margin-top: 5rem;
-            border: none;
-            border-radius: 0.75rem;
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-            transition: all 0.3s;
+            margin-top: 10rem;
+            border: 1px solid #d1c4e9;
+            border-radius: 1.5rem;
+            box-shadow: 0 0.75rem 1.5rem rgba(136, 153, 228, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: linear-gradient(135deg, #f3e5f5, #ffffff);
+            padding: 2rem;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .stats-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            transform: translateY(-15px);
+            box-shadow: 0 1rem 2rem rgba(136, 153, 228, 0.35);
         }
 
         .card-icon {
-            width: 48px;
-            height: 48px;
+            width: 70px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 0.5rem;
+            border-radius: 1.25rem;
+            background: rgba(224, 191, 228, 0.2);
+            font-size: 2rem;
+        }
+
+        .card-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.5rem;
+        }
+
+        .card-subtitle {
+            font-style: italic;
+            color: #666;
+            font-size: 1.1rem;
         }
 
         @media (max-width: 768px) {
@@ -68,192 +93,96 @@
                 margin-left: 250px;
             }
         }
-
-        
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Sidebar -->
     @include('Admin.Pages.Sidebar')
 
-    <!-- Main Content -->
     <div class="content-wrapper">
         <header class="top-header py-3 px-4 d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
                 <button class="btn btn-sm btn-light d-md-none me-2" id="menu-toggle">
                     <i class="bi bi-list"></i>
                 </button>
-                <span class="h4 mb-0">Dashboard</span>
+                <h1 class="mb-0">Dashboard</h1>
             </div>
         </header>
 
         <div class="container-fluid p-4">
-            <!-- Dashboard Stats -->
             <div class="row mb-4">
                 <div class="col-md-3 mb-3">
                     <div class="stats-card card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="card-subtitle text-muted">Total Pets</h6>
-                                    <h3 class="card-title">{{ $total }}</h3>
-                                    <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i> 12.5% increase</p>
-                                </div>
-                                <div class="card-icon bg-primary bg-opacity-10 text-primary">
-                                    <i class="bi bi-heart fs-4"></i>
-                                </div>
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <h6 class="card-subtitle text-muted">Total Pets</h6>
+                                <h3 class="card-title">{{ $total }}</h3>
+                                <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i> 12.5% increase</p>
+                            </div>
+                            <div class="card-icon bg-primary bg-opacity-10 text-primary">
+                                <i class="bi bi-heart"></i>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <div class="stats-card card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="card-subtitle text-muted">Owners</h6>
-                                    <h3 class="card-title">{{$clients}}</h3>
-                                    <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i> 8.3% increase</p>
-                                </div>
-                                <div class="card-icon bg-success bg-opacity-10 text-success">
-                                    <i class="bi bi-people fs-4"></i>
-                                </div>
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <h6 class="card-subtitle text-muted">Owners</h6>
+                                <h3 class="card-title">{{$clients}}</h3>
+                                <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i> 8.3% increase</p>
+                            </div>
+                            <div class="card-icon bg-success bg-opacity-10 text-success">
+                                <i class="bi bi-people"></i>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <div class="stats-card card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="card-subtitle text-muted">Registered</h6>
-                                    <h3 class="card-title">{{$clients}}</h3>
-                                    <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i> 8.3% increase</p>
-                                </div>
-                                <div class="card-icon bg-success bg-opacity-10 text-success">
-                                    <i class="bi bi-people fs-4"></i>
-                                </div>
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <h6 class="card-subtitle text-muted">Registered</h6>
+                                <h3 class="card-title">{{$clients}}</h3>
+                                <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i> 8.3% increase</p>
+                            </div>
+                            <div class="card-icon bg-success bg-opacity-10 text-success">
+                                <i class="bi bi-people"></i>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <div class="stats-card card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="card-subtitle text-muted">Appointments</h6>
-                                    <h3 class="card-title">45</h3>
-                                    <p class="card-text text-danger mb-0"><i class="bi bi-arrow-down"></i> 3.2% decrease</p>
-                                </div>
-                                <div class="card-icon bg-warning bg-opacity-10 text-warning">
-                                    <i class="bi bi-calendar-check fs-4"></i>
-                                </div>
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <h6 class="card-subtitle text-muted">Appointments</h6>
+                                <h3 class="card-title">45</h3>
+                                <p class="card-text text-danger mb-0"><i class="bi bi-arrow-down"></i> 3.2% decrease</p>
+                            </div>
+                            <div class="card-icon bg-warning bg-opacity-10 text-warning">
+                                <i class="bi bi-calendar-check"></i>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-md-3 mb-3">
-                    <div class="stats-card card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="card-subtitle text-muted">Revenue</h6>
-                                    <h3 class="card-title">$5,240</h3>
-                                    <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i> 18.7% increase</p>
-                                </div>
-                                <div class="card-icon bg-info bg-opacity-10 text-info">
-                                    <i class="bi bi-currency-dollar fs-4"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
-
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Menu toggle for mobile
             document.getElementById('menu-toggle')?.addEventListener('click', function() {
                 document.querySelector('.sidebar').classList.toggle('show');
                 document.querySelector('.content-wrapper').classList.toggle('pushed');
             });
-
-            // Add Pet sidebar link
-            const addPetLink = document.querySelector('.sidebar a[href="#addPetSection"]');
-            const addPetSection = document.getElementById('addPetSection');
-
-            if (addPetLink && addPetSection) {
-                // Set initial state to hidden
-                addPetSection.hidden = true;
-
-                // Add click event
-                addPetLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-
-                    // Toggle visibility
-                    addPetSection.hidden = !addPetSection.hidden;
-
-                    // If visible, scroll to it
-                    if (!addPetSection.hidden) {
-                        addPetSection.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-
-                        // Add active class to sidebar link
-                        document.querySelectorAll('.sidebar-link').forEach(link => {
-                            link.classList.remove('active');
-                        });
-                        addPetLink.classList.add('active');
-                    }
-                });
-            }
-
-
-            // Form validation
-            (() => {
-                'use strict'
-                const forms = document.querySelectorAll('.needs-validation')
-                Array.from(forms).forEach(form => {
-                    form.addEventListener('submit', event => {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-            })()
-
-            // Image preview
-            const petImageInput = document.getElementById('petImage');
-            if (petImageInput) {
-                petImageInput.addEventListener('change', function(e) {
-                    const preview = document.getElementById('preview');
-                    const previewContainer = document.getElementById('imagePreview');
-
-                    if (this.files && this.files[0]) {
-                        const reader = new FileReader();
-
-                        reader.onload = function(e) {
-                            preview.src = e.target.result;
-                            previewContainer.classList.remove('d-none');
-                        }
-
-                        reader.readAsDataURL(this.files[0]);
-                    }
-                });
-            }
         });
     </script>
 </body>
-
-</html>
 
 </html>

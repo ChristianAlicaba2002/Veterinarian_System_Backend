@@ -22,16 +22,16 @@ Route::middleware(['auth:web'])->group(function () {
         $pet = Pets::all();
         $total = $pet->count();
         return view('Admin.Layouts.Main', compact('total', 'pet','clients'));
-    })->name('admin.main');
+    })->name('admin.main')->middleware(PreventBackHistory::class);
 
     Route::get('/allpets', function () {
         $pet = Pets::all();
         return view('Admin.Pages.PetsInformation', compact('pet'));
-    })->name('allpets');
+    })->name('allpets')->middleware(PreventBackHistory::class);
 
     Route::get('/addpets', function () {
         return view('Admin.Pages.AddNewPet');
-    })->name('addpets');
+    })->name('addpets')->middleware(PreventBackHistory::class);
 });
 
 //Admin Auth

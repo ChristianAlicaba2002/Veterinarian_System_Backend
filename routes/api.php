@@ -2,8 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\ClientController;
 use App\Http\Controllers\Pets\PetController;
+use App\Http\Controllers\API\ClientController;
+use App\Http\Controllers\API\GroomingController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -24,3 +25,7 @@ Route::get('/Pets',[PetController::class , 'getAllPets']);
 Route::get('/storage/{imageName}', function ($imageName) {
     return response()->file(public_path('images/' . $imageName));
 });
+
+//Appointment API's
+Route::post('/grooming', [GroomingController::class, 'GroomingAppointment']);
+Route::get('/grooming', [GroomingController::class, 'getAllAppointGroomings']);

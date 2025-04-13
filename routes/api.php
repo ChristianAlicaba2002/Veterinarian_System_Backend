@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\CheckUpController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Pets\PetController;
@@ -26,6 +27,9 @@ Route::get('/storage/{imageName}', function ($imageName) {
     return response()->file(public_path('images/' . $imageName));
 });
 
-//Appointment API's
+//Grooming Appointment API's
 Route::post('/grooming', [GroomingController::class, 'GroomingAppointment']);
 Route::get('/grooming', [GroomingController::class, 'getAllAppointGroomings']);
+//CheckUps Appointment API's
+Route::post('/checkUp' , [CheckUpController::class , 'CreateCheckUpAppointment']);
+Route::get('/checkUp' , [CheckUpController::class , 'getAllCheckUpAppointments']);

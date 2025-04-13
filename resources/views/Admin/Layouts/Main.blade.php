@@ -160,8 +160,9 @@
                     <div class="stats-card card">
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div>
+                
                                 <h6 class="card-subtitle text-muted">Appointments</h6>
-                                <h3 class="card-title">45</h3>
+                                <h3 class="card-title">{{ $grooming }}</h3>
                                 <p class="card-text text-danger mb-0"><i class="bi bi-arrow-down"></i> 3.2% decrease</p>
                             </div>
                             <div class="card-icon bg-warning bg-opacity-10 text-warning">

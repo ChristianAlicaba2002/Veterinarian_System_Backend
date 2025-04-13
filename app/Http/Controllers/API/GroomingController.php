@@ -32,7 +32,7 @@ class GroomingController extends Controller
         'breed' => 'required|string|max:255',
         'service_type' => 'required|string|max:255',
         'appointment_date' => 'required|date_format:Y-m-d',
-        'appointment_time' => 'required|date_format:h:i',
+        'appointment_time' => 'required|date_format:H:i',
         'groomer_name' => 'nullable|string|max:255',
         'notes' => 'nullable|string|max:1000',
     ]);

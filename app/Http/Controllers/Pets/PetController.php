@@ -39,6 +39,7 @@ class PetController extends Controller
             'Special_Markings' => 'required|string|max:255',
             'Microchip_Number' => 'required|string|max:255',
             'Image' => 'nullable|image',
+            'Status' => 'required|string|max:255',
         ]);
 
         $data = [];
@@ -65,7 +66,8 @@ class PetController extends Controller
             $request->Weight,
             $request->Special_Markings,
             $request->Microchip_Number,
-            $data['Image']
+            $data['Image'],
+            $request->Status,
         );   
 
         return redirect('/main')->with('success' , 'Register Successfully');

@@ -23,7 +23,8 @@ class EloquentPetRepository implements PetRepository
         $PetsModel->Weight = $pet->getWeight();
         $PetsModel->Special_Markings = $pet->getSpecialMarkings();
         $PetsModel->Microchip_Number = $pet->getMicrochipNumber();
-        $PetsModel->image = $pet->getImage(); // Assuming you have an image field in your Pet model
+        $PetsModel->image = $pet->getImage();
+        $PetsModel->Status = $pet->getStatus();
         $PetsModel->save(); // Save the pet to the database
     }
 
@@ -51,7 +52,8 @@ class EloquentPetRepository implements PetRepository
         $PetsModel->Weight = $pet->getWeight();
         $PetsModel->Special_Markings = $pet->getSpecialMarkings();
         $PetsModel->Microchip_Number = $pet->getMicrochipNumber();
-        $PetsModel->Image = $pet->getImage(); // Assuming you have an image field in your Pet model
+        $PetsModel->Image = $pet->getImage();
+        $PetsModel->Status = $pet->getStatus();
         $PetsModel->save(); // Save the pet to the database
     }
 

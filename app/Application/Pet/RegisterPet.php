@@ -24,7 +24,8 @@ class RegisterPet
         string $Weight,
         string $Special_Markings,
         string $Microchip_Number,
-        string $Image
+        string $Image,
+        string $Status
     )
     {
         $pet = new Pet(
@@ -39,7 +40,8 @@ class RegisterPet
             $Weight,
             $Special_Markings,
             $Microchip_Number,
-            $Image
+            $Image,
+            $Status
         );
         return $this->petRepository->create($pet);
     }
@@ -56,7 +58,8 @@ class RegisterPet
         string $Weight,
         string $Special_Markings,
         string $Microchip_Number,
-        string $Image
+        string $Image,
+        string $Status
     )
     {
         $pet = new Pet(
@@ -71,7 +74,8 @@ class RegisterPet
             $Weight,
             $Special_Markings,
             $Microchip_Number,
-            $Image
+            $Image,
+            $Status
         );
         return $this->petRepository->update($pet);
     }

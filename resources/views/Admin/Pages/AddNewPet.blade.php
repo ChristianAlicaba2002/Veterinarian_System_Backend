@@ -234,6 +234,15 @@
                                     <div class="invalid-feedback">Required</div>
                                 </div>
                                 <div class="form-floating mb-2">
+                                    <select class="form-select" id="species" name="Status" required>
+                                        <option value="" selected disabled>Select Status</option>
+                                        <option value="Available">Available</option>
+                                        <option value="Adopted">Adopted</option>
+                                    </select>
+                                    <label for="species">Status</label>
+                                    <div class="invalid-feedback">Required</div>
+                                </div>
+                                <div class="form-floating mb-2">
                                     <input type="number" class="form-control" id="age" placeholder="Enter Age"
                                         name="Age" required min="0" oninput="this.value = Math.abs(this.value)">
                                     <label for="age">Age (years)</label>
@@ -266,6 +275,7 @@
                                     <label for="microchip">Microchip Number</label>
                                     <div class="invalid-feedback">Required</div>
                                 </div>
+                                
                             </div>
                             <div class="col-12">
                                 <div class="row">

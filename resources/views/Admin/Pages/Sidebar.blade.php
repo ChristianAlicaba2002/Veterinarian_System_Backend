@@ -191,7 +191,7 @@
                 </a>
             </li>
             <li>
-                <a href="" class="nav-link sidebar-link {{ request()->routeIs('admin.appointments') ? 'active' : '' }}">
+                <a href="{{ route('appointments') }}" class="nav-link sidebar-link {{ request()->routeIs('appointments') ? 'active' : '' }}">
                     <i class="bi bi-calendar-check"></i>
                     <span>Appointments</span>
                 </a>

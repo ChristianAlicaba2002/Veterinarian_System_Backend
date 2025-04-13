@@ -17,7 +17,8 @@ class Pet
         private string $Weight,
         private string $Special_Markings,
         private string $Microchip_Number,
-        private string $Image
+        private string $Image,
+        private string $Status
     )
     {
         $this->pet_id = $pet_id;
@@ -32,6 +33,7 @@ class Pet
         $this->Special_Markings = $Special_Markings;
         $this->Microchip_Number = $Microchip_Number;
         $this->Image = $Image;
+        $this->Status = $Status;
     }
 
     public function getPetId(): string
@@ -81,6 +83,10 @@ class Pet
     public function getImage(): string
     {
         return $this->Image;
+    }
+    public function getStatus(): string
+    {
+        return $this->Status;
     }
 
 }

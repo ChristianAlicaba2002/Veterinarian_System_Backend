@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Pets\PetController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Middleware\PreventBackHistory;
+use App\Models\Adoption;
+use App\Models\CheckUp;
 use App\Models\Grooming;
 
 Route::get('/', function () {
@@ -22,9 +24,17 @@ Route::middleware(['auth:web'])->group(function () {
         $clients = Client::all()->count();
         $pet = Pets::all();
         $total = $pet->count();
-        $grooming = Grooming::all()->count();
-        return view('Admin.Layouts.Main', compact('total', 'pet','clients', 'grooming'));
+        
+        return view('Admin.Layouts.Main', compact('total', 'pet','clients'));
     })->name('admin.main')->middleware(PreventBackHistory::class);
+
+    Route::get('/appointments', function(){
+        $grooming = Grooming::all();
+        $checkUp = CheckUp::all();
+        $adoption = Adoption::all();
+        
+        return view('Admin.Pages.Appointments', compact('grooming', 'checkUp','adoption'));
+    })->name('appointments')->middleware(PreventBackHistory::class);
 
     Route::get('/allpets', function () {
         $pet = Pets::all();

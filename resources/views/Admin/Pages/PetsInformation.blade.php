@@ -178,6 +178,8 @@
                     <div><i class="bi bi-scale"></i><span>Weight:</span>{{ $pets->Weight }} Lbs</div>
                     <div><i class="bi bi-cpu"></i><span>Microchip:</span>{{ $pets->Microchip_Number }}</div>
                     <div><span>Markings:</span><textarea readonly>{{ $pets->Special_Markings }}</textarea></div>
+                    <div><i class="bi bi-cpu"></i><span>Status:</span>{{ $pets->Status }}</div>
+
                 </div>
             </div>
         </div>

@@ -21,5 +21,6 @@ class Pets extends Model
                 'Special_Markings',
                 'Microchip_Number',
                 'image',
+                'Status',
             ];
 }

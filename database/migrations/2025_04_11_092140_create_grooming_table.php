@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('grooming', function (Blueprint $table) {
             $table->id('grooming_id');
-            $table->integer('client_id')->constrained('clients')->onDelete('cascade');
-            $table->string('first_name')->constrained('clients')->onDelete('cascade');
-            $table->string('last_name')->constrained('clients')->onDelete('cascade');
-            $table->string('address')->constrained('clients')->onDelete('cascade');
-            $table->string('phone_number')->constrained('clients')->onDelete('cascade');
+            $table->integer('client_id')->referefences('client_id')->on('clients')->onDelete('cascade');
+            $table->string('first_name')->referefences('first_name')->on('clients')->onDelete('cascade');
+            $table->string('last_name')->referefences('last_name')->on('clients')->onDelete('cascade');
+            $table->string('address')->referefences('address')->on('clients')->onDelete('cascade');
+            $table->string('phone_number')->referefences('phone_number')->on('clients')->onDelete('cascade');
             $table->string('pet_name');
             $table->string('breed');
             $table->string('service_type');

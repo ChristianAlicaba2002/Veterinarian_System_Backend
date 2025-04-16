@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('Special_Markings')->nullable();
             $table->string('Microchip_Number')->nullable();
             $table->string('image')->nullable();
-            $table->string('Status')->default('Available');
+            $table->string('Status')->nullable();
             $table->timestamps();
         });
     }

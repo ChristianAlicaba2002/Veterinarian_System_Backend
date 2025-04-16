@@ -12,9 +12,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-// Route::apiResource('Pets', PetController::class);
-// Route::apiResource('clients', ClientController::class);
-
 //Client API's
 Route::post('/register', [ClientController::class, 'CreateClient']);
 Route::post('/login', [ClientController::class, 'LoginClient']);
@@ -23,6 +20,7 @@ Route::get('/clients', [ClientController::class, 'getAllClients']);
 
 //Pets API's
 Route::get('/Pets',[PetController::class , 'getAllPets']);
+Route::get('/Pets/{pet_id}',[PetController::class , 'PetData']);
 
 Route::get('/storage/{imageName}', function ($imageName) {
     return response()->file(public_path('images/' . $imageName));
@@ -37,4 +35,3 @@ Route::get('/checkUp' , [CheckUpController::class , 'getAllCheckUpAppointments']
 
 //Adoption Appointment API's
 Route::post('/adoption',[AdoptionController::class , 'CreateAdoption']);
-// Route::get('/adoption',[AdoptionController::class , 'CreateAdoption']);

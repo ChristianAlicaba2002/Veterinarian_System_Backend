@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('phone_number')->references('phone_number')->on('clients')->onDelete('cascade');
             $table->string('address')->references('address')->on('clients')->onDelete('cascade');
             $table->integer('pet_id')->references('pet_id')->on('pets')->onDelete('cascade');
-            $table->integer('image')->references('image')->on('pets')->onDelete('cascade');
+            $table->string('image')->references('image')->on('pets')->onDelete('cascade');
             $table->string('Pet_Name')->references('Pet_Name')->on('pets')->onDelete('cascade');
             $table->string('Species')->references('Species')->on('pets')->onDelete('cascade');
             $table->string('Breed')->references('Breed')->on('pets')->onDelete('cascade');

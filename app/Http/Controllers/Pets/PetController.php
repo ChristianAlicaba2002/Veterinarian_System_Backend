@@ -21,7 +21,7 @@ class PetController extends Controller
         return Response()->json([
             'Status' => true,
             'Message' => 'Retrieve Data Successully',
-            'Data' => $pets
+            'data' => $pets
         ],200);
     }
 
@@ -87,6 +87,27 @@ class PetController extends Controller
     {
         $result = random_int(111111,999999);
         return $result;
+    }
+
+
+    public function PetData(Pets $pet ,  $pet_id)
+    {
+        $petData = $pet::where('pet_id' , $pet_id)->get();
+
+        if(!$petData)
+        {
+            return Response()->json([
+                'status' => false,
+                'message' => 'Pet not found',
+            ]);
+        }
+
+
+        return Response()->json([
+            'status' => true,
+            'message' => 'Retrived Data',
+            'data' => $petData
+        ],201);
     }
 
 }

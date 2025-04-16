@@ -29,7 +29,7 @@ class AdoptionController extends Controller
             'Color'  => 'required|string',
             'Breed'  => 'required|string',
             'Microchip_Number'  => 'required|integer',
-            'Neutered_Spay'  => 'string',
+            'Neutered_Spay'  => 'required|string',
             'Special_Markings'  => 'required|string',
             'Weight'  => 'required|integer',
             'adoption_date'  => 'required|date_format:Y-m-d',
@@ -64,10 +64,9 @@ class AdoptionController extends Controller
             'Special_Markings'  => $request->Special_Markings,
             'Weight'  => $request->Weight,
             'adoption_date'  => $request->adoption_date,
-            'Status '  => $request->Status
+            'Status'  => $request->Status
         ]);
 
-        dd($adoptPet);
 
         return Response()->json([
             'status' => true,

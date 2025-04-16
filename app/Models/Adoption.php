@@ -8,16 +8,25 @@ class Adoption extends Model
 {
     protected $table = 'adoption';
     protected $fillable = [
+        'client_id',
+        'first_name',
+        'last_name',
+        'email',
+        'phone_number',
+        'address',
         'pet_id',
+        'image',
         'Pet_Name',
-        'Species',
-        'Breed',
         'Age',
+        'Species',
         'Sex',
+        'Color',
+        'Breed',
+        'Microchip_Number',
+        'Neutered_Spay',
+        'Special_Markings',
+        'Weight',
         'adoption_date',
-        'adopter_name',
-        'adopter_contact',
-        'adoption_fee',
-        'status'
+        'Status',
     ];
 }

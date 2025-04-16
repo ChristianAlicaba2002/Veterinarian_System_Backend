@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('checkup', function (Blueprint $table) {
             $table->id();
-            $table->string('owner_id')->references('clients')->onDelete('cascade');
-            $table->string('owner_fullname')->references('clients')->onDelete('cascade');
-            $table->string('owner_address')->references('clients')->onDelete('cascade');
-            $table->string('owner_email')->references('clients')->onDelete('cascade');
+            $table->string('owner_id')->references('client_id')->on('clients')->onDelete('cascade');
+            $table->string('owner_fullname')->references('first_name','last_name')->on('clients')->onDelete('cascade');
+            $table->string('owner_address')->references('address')->on('clients')->onDelete('cascade');
+            $table->string('owner_email')->references('email')->on('clients')->onDelete('cascade');
             $table->string('pet_name');
             $table->string('breed');
             $table->string('weight');

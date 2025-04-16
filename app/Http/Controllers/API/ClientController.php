@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Client;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Application\Client\RegisterClient;
-use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
@@ -60,7 +61,7 @@ class ClientController extends Controller
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'email' => $request->email,
-                'password' => bcrypt($request->password),
+                'password' => Hash::make($request->password),
                 'phone_number' => $request->phone_number,
                 'address' => $request->address,
                 'notes' => 'Whatever notes you want to add',
@@ -77,7 +78,7 @@ class ClientController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'status' => false,
-                'message' => 'Failed to register client',
+                'message' => 'Registration Failed',
                 'error' => $e->getMessage()
             ], 500);
         }
@@ -128,7 +129,7 @@ class ClientController extends Controller
     public function GetTheGenerateProductId(): string
     {
         do {
-            $id = $this->GenerateClientId(6);
+            $id = random_int(111111,999999);
             // Check if the generated ID already exists
             $exists = DB::table('clients')->where('client_id', $id)->first();
         } while ($exists !== null); // Ensure the ID is unique
@@ -136,9 +137,9 @@ class ClientController extends Controller
         return $id;
     }
 
-    public function GenerateClientId(int $length = 0): string
-    {
-        $result = substr(bin2hex(random_bytes(ceil($length / 2))), 0, $length);
-        return $result;
-    }
+    // public function GenerateClientId(int $length = 0): string
+    // {
+    //     $result = substr(bin2hex(random_bytes(ceil($length / 2))), 0, $length);
+    //     return $result;
+    // }
 }

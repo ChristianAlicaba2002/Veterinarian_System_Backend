@@ -2,256 +2,256 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <title>Appointments</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            /* align-items: center; */
-            background-color: #f9f9f9;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <title>Appointments</title>
+  <style>
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 30px 15px;
+    min-height: 100vh;
+  }
 
-        .main-container {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            width: 100%;
-        }
+  .cards {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
 
-        .cards {
-            display: flex;
-            gap: 30px;
-            margin-top: 20px;
-            justify-content: center;
-        }
+  .card {
+    width: 240px;
+    padding: 25px;
+    background: linear-gradient(145deg, rgb(242, 218, 255), rgba(255, 177, 232, 0.4));
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 10px rgba(250, 185, 230, 0.6);
+    transition: 0.3s ease;
+    border: 2px solid rgb(182, 89, 140);
+  }
 
-        .card {
-            width: 250px;
-            padding: 30px;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            background-color: #fff;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(241, 144, 241, 0.15);
+  }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
+  .card h6 {
+    color: rgb(200, 143, 223);
+    font-size: 1.5em;
+    margin-bottom: 6px;
+  }
 
-        .card h6 {
-            margin: 0;
-            color: #888;
-            font-size: 18px;
-        }
+  .card h3 {
+    color: #9b59b6;
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
 
-        .card h3 {
-            margin: 10px 0;
-            color: #333;
-            font-size: 24px;
-        }
+  .card p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
 
-        .card p {
-            margin: 0;
-            color: #e74c3c;
-            font-size: 14px;
-        }
+  .card-icon {
+    font-size: 28px;
+    color: #9b59b6;
+  }
 
-        .card-icon {
-            font-size: 28px;
-            margin-top: 10px;
-            color: #f39c12;
-        }
+  .table-container {
+    display: none;
+    width: auto;
+    max-width: 1100px;
+    border: rgb(243, 211, 255) 1px solid;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(255, 166, 243, 0.57);
+    padding: 25px;
+  }
 
-        .table-container {
-            display: none;
-            margin-top: 40px;
-            width: 80%;
-        }
+  .table-container h3 {
+    text-align: center;
+    color: rgb(213, 93, 218);
+    margin-bottom: 20px;
+  }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
 
-        table th,
-        table td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-            font-size: .80rem;
-        }
 
-        table th {
-            background-color: #f4f4f4;
-        }
-    </style>
+  @media (max-width: 768px) {
+    .cards {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .table-container {
+      width: 100%;
+      padding: 15px;
+    }
+
+    table {
+      font-size: 0.75rem;
+    }
+  }
+</style>
+
 </head>
 
 <body>
-    @include('Admin.Pages.Sidebar')
+  @include('Admin.Pages.Sidebar')
 
-    <div class="main-container">
+  <div class="main-container">
+    <div class="cards">
+      <div class="card" onclick="showTable('groomingTable')">
+        <h6>Grooming</h6>
+        <h3>{{ count($grooming) }}</h3>
+        @if (count($grooming) < 5)
+        <p style="color: #e17055;"><i class="bi bi-arrow-down"></i> {{ count($grooming) }} grooming appointments</p>
+        @else
+        <p style="color: #00b894;"><i class="bi bi-arrow-up"></i> {{ count($grooming) }} grooming appointments</p>
+        @endif
+        <div class="card-icon"><i class="bi bi-calendar-check"></i></div>
+      </div>
 
-        <div class="cards">
-            <div class="card" onclick="showTable('groomingTable')">
-                <h6>Grooming</h6>
-                <h3>{{ count($grooming) }}</h3>
-                @if (count($grooming) < 5)
-                    <p style="color: red;"><i class="bi bi-arrow-down"></i> {{ count($grooming) }} grooming appointments</p>
-                    @else
-                    <p style="color: green;"><i class="bi bi-arrow-up"></i> {{ count($grooming) }} grooming appointments</p>
-                    @endif
-                    <div class="card-icon">
-                        <i class="bi bi-calendar-check"></i>
-                    </div>
-            </div>
-            <div class="card" onclick="showTable('checkUpTable')">
-                <h6>Check Ups</h6>
-                <h3>{{ count($checkUp) }}</h3>
-                @if (count($checkUp) < 5)
-                    <p><i class="bi bi-arrow-down" style="color: red;"></i> {{ count($checkUp) }} check up appointments</p>
-                    @else
-                    <p><i class="bi bi-arrow-up" style="color: green;"></i> {{ count($checkUp) }} check up appointments</p>
-                    @endif
-                    <div class="card-icon">
-                        <i class="bi bi-calendar-check"></i>
-                    </div>
-            </div>
-            <div class="card" onclick="showTable('adoptionTable')">
-                <h6>Adoption</h6>
-                <h3>{{ count($adoption) }}</h3>
-                @if (count($adoption) < 5)
-                    <p><i class="bi bi-arrow-down" style="color: red;"></i> {{ count($adoption) }} adoption appointments</p>
-                    @else
-                    <p><i class="bi bi-arrow-up" style="color: green;"></i> {{ count($adoption) }} adoption appointments</p>
-                    @endif
-                    <div class="card-icon">
-                        <i class="bi bi-calendar-check"></i>
-                    </div>
-            </div>
-        </div>
+      <div class="card" onclick="showTable('checkUpTable')">
+        <h6>Check Ups</h6>
+        <h3>{{ count($checkUp) }}</h3>
+        @if (count($checkUp) < 5)
+        <p style="color: #e17055;"><i class="bi bi-arrow-down"></i> {{ count($checkUp) }} check up appointments</p>
+        @else
+        <p style="color: #00b894;"><i class="bi bi-arrow-up"></i> {{ count($checkUp) }} check up appointments</p>
+        @endif
+        <div class="card-icon"><i class="bi bi-calendar-check"></i></div>
+      </div>
 
-        <div id="groomingTable" class="table-container">
-            <h3>Grooming Appointments</h3>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <td>Client ID</td>
-                        <td>First Name</td>
-                        <td>Last Name</td>
-                        <td>Address</td>
-                        <td>Phone Number</td>
-                        <td>Pet Name</td>
-                        <td>Breed</td>
-                        <td>Service Type</td>
-                        <td>Appointment Date</td>
-                        <td>Appointment Time</td>
-                        <td>Groomer Name</td>
-                        <td>Notes</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($grooming as $appointment)
-                    <tr>
-                        <td>{{$appointment->client_id}}</td>
-                        <td>{{$appointment->first_name}}</td>
-                        <td>{{$appointment->last_name}}</td>
-                        <td>{{$appointment->address}}</td>
-                        <td>{{$appointment->phone_number}}</td>
-                        <td>{{$appointment->pet_name}}</td>
-                        <td>{{$appointment->breed}}</td>
-                        <td>{{$appointment->service_type}}</td>
-                        <td>{{$appointment->appointment_date}}</td>
-                        <td>{{$appointment->appointment_time}}</td>
-                        <td>{{$appointment->groomer_name}}</td>
-                        <td>{{$appointment->notes}}</td>
-                    </tr>
-
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-
-        <div id="checkUpTable" class="table-container">
-            <h3>Check Up Appointments</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Owner ID</td>
-                        <td>Owner Fullname</td>
-                        <td>Owner Address</td>
-                        <td>Owner Email</td>
-                        <td>Pet Name</td>
-                        <td>Breed</td>
-                        <td>Weight</td>
-                        <td>Species</td>
-                        <td>Age</td>
-                        <td>Sex</td>
-                        <td>Appointment Aate</td>
-                        <td>Checkup Type</td>
-                        <td>Symptoms</td>
-                        <td>Preferred Vet</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($checkUp as $appointment)
-                    <tr>
-                        <td>{{ $appointment->owner_id }}</td>
-                        <td>{{ $appointment->owner_fullname }}</td>
-                        <td>{{ $appointment->owner_address }}</td>
-                        <td>{{ $appointment->owner_email }}</td>
-                        <td>{{ $appointment->pet_name }}</td>
-                        <td>{{ $appointment->breed }}</td>
-                        <td>{{$appointment->weight}}</td>
-                        <td>{{$appointment->species}}</td>
-                        <td>{{$appointment->age}}</td>
-                        <td>{{$appointment->sex}}</td>
-                        <td>{{$appointment->appointment_date}}</td>
-                        <td>{{ $appointment->checkup_type }}</td>
-                        <td>{{ $appointment->symptoms }}</td>
-                        <td>{{ $appointment->preferred_vet }}</td>
-                    </tr>
-
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-
-        <div id="adoptionTable" class="table-container">
-            <h3>Adoption Appointments</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Client Name</th>
-                        <th>Pet Name</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Add adoption data here -->
-                </tbody>
-            </table>
-        </div>
+      <div class="card" onclick="showTable('adoptionTable')">
+        <h6>Adoption</h6>
+        <h3>{{ count($adoption) }}</h3>
+        @if (count($adoption) < 5)
+        <p style="color: #e17055;"><i class="bi bi-arrow-down"></i> {{ count($adoption) }} adoption appointments</p>
+        @else
+        <p style="color: #00b894;"><i class="bi bi-arrow-up"></i> {{ count($adoption) }} adoption appointments</p>
+        @endif
+        <div class="card-icon"><i class="bi bi-calendar-check"></i></div>
+      </div>
     </div>
 
-    <script>
-        function showTable(tableId) {
-            const tables = document.querySelectorAll('.table-container');
-            tables.forEach(table => table.style.display = 'none');
-            document.getElementById(tableId).style.display = 'block';
-        }
-    </script>
+    <div id="groomingTable" class="table-container">
+      <h3>Grooming Appointments</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Client ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Pet Name</th>
+            <th>Breed</th>
+            <th>Service</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Groomer</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($grooming as $appointment)
+          <tr>
+            <td>{{$appointment->client_id}}</td>
+            <td>{{$appointment->first_name}}</td>
+            <td>{{$appointment->last_name}}</td>
+            <td>{{$appointment->address}}</td>
+            <td>{{$appointment->phone_number}}</td>
+            <td>{{$appointment->pet_name}}</td>
+            <td>{{$appointment->breed}}</td>
+            <td>{{$appointment->service_type}}</td>
+            <td>{{$appointment->appointment_date}}</td>
+            <td>{{$appointment->appointment_time}}</td>
+            <td>{{$appointment->groomer_name}}</td>
+            <td>{{$appointment->notes}}</td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+
+    <div id="checkUpTable" class="table-container">
+      <h3>Check Up Appointments</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Owner ID</th>
+            <th>Fullname</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Pet Name</th>
+            <th>Breed</th>
+            <th>Weight</th>
+            <th>Species</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Symptoms</th>
+            <th>Vet</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($checkUp as $appointment)
+          <tr>
+            <td>{{ $appointment->owner_id }}</td>
+            <td>{{ $appointment->owner_fullname }}</td>
+            <td>{{ $appointment->owner_address }}</td>
+            <td>{{ $appointment->owner_email }}</td>
+            <td>{{ $appointment->pet_name }}</td>
+            <td>{{ $appointment->breed }}</td>
+            <td>{{$appointment->weight}}</td>
+            <td>{{$appointment->species}}</td>
+            <td>{{$appointment->age}}</td>
+            <td>{{$appointment->sex}}</td>
+            <td>{{$appointment->appointment_date}}</td>
+            <td>{{ $appointment->checkup_type }}</td>
+            <td>{{ $appointment->symptoms }}</td>
+            <td>{{ $appointment->preferred_vet }}</td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+
+    <div id="adoptionTable" class="table-container">
+      <h3>Adoption Appointments</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Client Name</th>
+            <th>Pet Name</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Add adoption data here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    function showTable(tableId) {
+      const tables = document.querySelectorAll('.table-container');
+      tables.forEach(table => table.style.display = 'none');
+      document.getElementById(tableId).style.display = 'block';
+    }
+  </script>
 </body>
 
 </html>

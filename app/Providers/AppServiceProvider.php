@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Domain\Client\ClientRepository;
+use App\Domain\Pet\PetRepository;
+use App\Infrastructure\Persistence\Eloquent\Pet\EloquentPetRepository;
+use App\Infrastructure\Persistence\Eloquent\CLient\EloquentClientRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(ClientRepository::class, EloquentClientRepository::class);
+        $this->app->bind(PetRepository::class, EloquentPetRepository::class);
     }
 
     /**

@@ -12,53 +12,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            background-image: url("images/paw.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-
-        .card-con {
-            border-top: 3px dashed #ce93d8;
-        }
 
         .main-content {
             margin-left: 200px;
-            padding: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            width: calc(100% - 200px);
+
         }
 
         .form-container {
-            width: 90%;
-            max-width: 550px;
-            padding: 20px;
+            width: 100%;
+            max-width: 600px;
             animation: fadeInUp 0.7s ease;
+            display: flex;
         }
 
         .form-container img {
-            height: 120px;
+            height: 90px;
             width: auto;
             display: block;
-            margin: 0 auto -8px;
             transition: transform 0.3s ease;
         }
 
         .form-container img:hover {
             transform: scale(1.05);
-        }
-
-        .card-body {
-            background-color: transparent;
         }
 
         .card-header {
@@ -71,22 +49,22 @@
         .card-header h2 {
             font-size: 1.75rem;
             font-weight: bold;
-            color: #7b1fa2;
+            color: #6a1b9a;
             margin-bottom: 0.5rem;
         }
 
         .card-header span {
-            background: linear-gradient(to right, #4fc3f7, #ab47bc);
+            background: linear-gradient(to right, #4fc3f7, #ba68c8);
             color: white;
-            padding: 1rem 1rem;
-            border-radius: 12px;
-            font-size: xx-large;
+            padding: 1rem;
+            border-radius: 20px;
+            font-size: 1.2rem;
         }
 
         label {
             font-weight: 600;
-            color: #4a148c;
-            font-size: 0.9rem;
+            color: #5e35b1;
+            font-size: 1rem;
             display: block;
             margin-bottom: 0.25rem;
         }
@@ -98,17 +76,17 @@
         .form-check-input,
         .form-control-sm,
         .form-floating {
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
 
         input[type="text"],
         input[type="email"],
         input[type="number"],
         select {
-            border-radius: 8px;
-            padding: 0.6rem 1rem;
-            border: 2px solid #ce93d8;
-            background-color: #f3f0ff;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ce93d8;
+            background-color: #f9f5ff;
             width: 100%;
             transition: box-shadow 0.3s ease;
             font-size: 1rem;
@@ -117,33 +95,33 @@
         input:focus,
         select:focus {
             outline: none;
-            box-shadow: 0 0 7px #ba68c8;
-            border-color: #ab47bc;
+            box-shadow: 0 0 8px #ba68c8;
+            border-color: #ba68c8;
         }
 
         .btn-primary {
             background: linear-gradient(to right, #81d4fa, #ba68c8);
             color: white;
-            padding: 0.75rem 1.25rem;
-            border: white 1px solid;
-            border-radius: 20px;
+            border: 1px plum solid;
+            border-radius: 25px;
             transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             font-size: 1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 8px rgba(255, 95, 207, 0.35);
+            font-weight: 500;
+            width: 20%;
+            height: 50px;
+            margin-top: -6px;
         }
 
         .btn-primary:hover {
             background: linear-gradient(to right, #4fc3f7, #ab47bc);
-            border: white 1px solid;
-            transform: scale(1.02);
-            box-shadow: 0 4px 8px rgba(248, 118, 209, 0.57);
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(248, 118, 209, 0.57);
         }
 
         .badge.bg-primary {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             padding: 0.4rem 0.8rem;
-            border-radius: 14px;
+            border-radius: 20px;
             font-weight: 500;
         }
 
@@ -159,10 +137,24 @@
             }
         }
 
+        .form-check {
+            margin-bottom: 0.75rem;
+        }
+
+        .form-check-input {
+            width: 20px;
+            height: 20px;
+        }
+
+        .form-check-label {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
         @media (orientation: landscape) {
             .form-container {
                 max-width: 65%;
-                padding: 1.5rem;
+                padding: 2rem;
             }
 
             .card-header h2 {
@@ -177,7 +169,6 @@
 
     <div class="main-content">
         <div class="form-container">
-            <img src="/images/adopt.gif" alt="" class="img-fluid">
             <div class="card-con" id="addPetSection">
                 <div class="card-header bg-white d-flex justify-content-between align-items-center">
                     <h2>Add Pet</h2>
@@ -258,86 +249,30 @@
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="Neutered_Spay"
-                                                id="neuteredNo" value="No">
+                                                id="neuteredNo" value="No" required>
                                             <label class="form-check-label" for="neuteredNo">No</label>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-floating mb-2">
-                                    <input type="number" step="0.01" class="form-control" id="weight"
-                                        placeholder="Enter Weight" name="Weight" required min="0" oninput="this.value = Math.abs(this.value)">
-                                    <label for="weight">Weight (kg)</label>
                                     <div class="invalid-feedback">Required</div>
                                 </div>
                                 <div class="form-floating mb-2">
-                                    <input type="text" class="form-control" id="microchip"
-                                        placeholder="Enter Microchip Number" name="Microchip_Number" maxlength="11" placeholder="000-000-0000">
-                                    <label for="microchip">Microchip Number</label>
+                                    <input type="file" class="form-control" name="Image" required>
+                                    <label for="image">Pet Image</label>
                                     <div class="invalid-feedback">Required</div>
-                                </div>
-                                
-                            </div>
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="mb-2">
-                                            <label for="petImage" class="form-label">Pet Image</label>
-                                            <input class="form-control form-control-sm" type="file" id="petImage"
-                                                name="Image" required>
-                                        </div>
-                                        <div id="imagePreview" class="rounded border p-2 text-center d-none"
-                                            style="max-height: 80px; overflow: hidden;">
-                                            <img id="preview" src="#" alt="Preview" class="img-fluid rounded"
-                                                style="max-height: 60px;">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 d-flex align-items-end justify-content-end">
-                                        <button type="submit" class="btn btn-primary w-100 b-w">
-                                            <i class="bi bi-plus-circle me-2"></i>Add Pet
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <img src="/images/adopt.gif" alt="" class="img-fluid">
+                        <button class="btn-primary">Add Pet</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-
-    <script>
-        document.getElementById('petImage').addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const preview = document.getElementById('preview');
-                    preview.src = e.target.result;
-                    document.getElementById('imagePreview').classList.remove('d-none');
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        (function () {
-            'use strict';
-            window.addEventListener('load', function () {
-                var forms = document.getElementsByClassName('needs-validation');
-                Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 </body>
 
 </html>

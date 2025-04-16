@@ -35,12 +35,13 @@ class PetController extends Controller
             'Sex' => 'required|string|max:255',
             'Neutered_Spay' => 'required|string|max:255',
             'Color' => 'required|string|max:255',
-            'Weight' => 'required|string|max:255',
+            'Weight' => 'required|integer',
             'Special_Markings' => 'required|string|max:255',
-            'Microchip_Number' => 'required|string|max:255',
+            'Microchip_Number' => 'required|integer',
             'Image' => 'nullable|image',
             'Status' => 'required|string|max:255',
         ]);
+
 
         $data = [];
 
@@ -68,7 +69,7 @@ class PetController extends Controller
             $request->Microchip_Number,
             $data['Image'],
             $request->Status,
-        );   
+        );
 
         return redirect('/main')->with('success' , 'Register Successfully');
     }

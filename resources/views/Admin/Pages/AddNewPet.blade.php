@@ -239,6 +239,18 @@
                                     <label for="age">Age (years)</label>
                                     <div class="invalid-feedback">Required</div>
                                 </div>
+                                <div class="form-floating mb-2">
+                                    <input type="number" class="form-control" placeholder="Enter Weight"
+                                        name="Weight" >
+                                    <label >Weight</label>
+                                    <div class="invalid-feedback">Required</div>
+                                </div>
+                                <div class="form-floating mb-2">
+                                    <input type="number" class="form-control" placeholder="Enter Microchip_Number"
+                                        name="Microchip_Number" >
+                                    <label >Microchip Number</label>
+                                    <div class="invalid-feedback">Required</div>
+                                </div>
                                 <div class="mb-2 p-2">
                                     <label class="form-label mb-1">Neutered/Spayed</label>
                                     <div class="d-flex gap-4">

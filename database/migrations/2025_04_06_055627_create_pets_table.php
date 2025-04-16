@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('Color');
             $table->float('Weight');
             $table->string('Special_Markings')->nullable();
-            $table->string('Microchip_Number')->nullable();
+            $table->integer('Microchip_Number')->nullable();
             $table->string('image')->nullable();
             $table->string('Status')->nullable();
             $table->timestamps();

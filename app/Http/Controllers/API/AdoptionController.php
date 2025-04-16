@@ -12,7 +12,7 @@ class AdoptionController extends Controller
 
     public function CreateAdoption(Request $request, Adoption $adoption)
     {
-    
+
         $validator = Validator::make($request->all(), [
             'client_id' => 'required|integer',
             'first_name'  => 'required|string',
@@ -36,14 +36,14 @@ class AdoptionController extends Controller
             'Status'  => 'required|string',
         ]);
 
-    
+
         if ($validator->fails()) {
             return Response()->json([
                 'status' => false,
                 'message' => $validator->errors(),
             ]);
         }
-       
+
         $adoptPet = $adoption->create([
             'client_id' => $request->client_id,
             'first_name'  => $request->first_name,

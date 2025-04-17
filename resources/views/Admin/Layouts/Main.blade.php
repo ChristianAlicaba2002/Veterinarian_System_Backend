@@ -163,15 +163,15 @@
 
         <div class="container-fluid p-4">
             <div class="row mb-4 dashboard-row">
-                <div class="col-md-5 total-pets-card stats-card card">
+                <div class="col-md-5 total-pets-card stats-card card ">
                     <div class="card-body d-flex flex-column justify-content-between">
+                    <div class="card-icon ">
+                            <i class="bi bi-heart bg-opacity-10"></i>
+                    </div>
                         <div>
                             <h6 class="card-subtitle text-muted">Total Pets</h6>
                             <h3 class="card-title">{{ $total }}</h3>
                             <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i> 12.5% increase</p>
-                        </div>
-                        <div class="card-icon bg-primary bg-opacity-10 text-primary">
-                            <i class="bi bi-heart"></i>
                         </div>
                     </div>
                 </div>

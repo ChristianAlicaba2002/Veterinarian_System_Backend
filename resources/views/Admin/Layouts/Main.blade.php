@@ -183,7 +183,7 @@
                         </div>
                         <div>
                             <h6 class="card-subtitle text-muted">Owners</h6>
-                            <h3 class="card-title">{{ $clients }}</h3>
+                            <h3 class="card-title">{{ count($owners) }}</h3>
                             <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i> 9.2% increase</p>
                         </div>
                     </div>

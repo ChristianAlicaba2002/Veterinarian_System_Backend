@@ -184,7 +184,7 @@
                 </a>
             </li>
             <li>
-                <a href="" class="nav-link sidebar-link {{ request()->routeIs('admin.owners') ? 'active' : '' }}">
+                <a href="{{ route('owner') }}" class="nav-link sidebar-link" id="allPetsLink">
                     <i class="bi bi-people"></i>
                     <span>Owners</span>
                 </a>

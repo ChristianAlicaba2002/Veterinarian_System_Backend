@@ -20,7 +20,7 @@ class AdoptionController extends Controller
             'email'  => 'required|email',
             'phone_number'  => 'required|string',
             'address'  => 'required|string',
-            'pet_id'  => 'required|string',
+            'pet_id'  => 'required|integer',
             'image'  => 'required|string',
             'Pet_Name'  => 'required|string',
             'Age'  => 'required|integer',

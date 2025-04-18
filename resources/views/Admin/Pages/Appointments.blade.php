@@ -264,6 +264,7 @@
             <th>Weight</th>
             <th>Adoption Date</th>
             <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -277,7 +278,7 @@
             <td>{{ $adoption->address }}</td>
             <td>{{ $adoption->pet_id }}</td>
             <td>
-              <img src="{{asset('/images/' .  $adoption->image  )}}" alt="{{$adoption->Pet_Name}}" srcset="">
+              <img style="width: 20px; height: 20px;" src="{{asset('/images/' .  $adoption->image  )}}" alt="{{$adoption->Pet_Name}}" srcset="">
             </td>
             <td>{{$adoption->Age}}</td>
             <td>{{$adoption->Species}}</td>
@@ -290,6 +291,12 @@
             <td>{{ $adoption->Weight }}</td>
             <td>{{ $adoption->adoption_date }}</td>
             <td>{{ $adoption->Status }}</td>
+            <td>
+              <form action="" method="post">
+                @csrf
+                <button type="submit">Re homed</button>
+              </form>
+            </td>
             @endforeach
             @else
             <td colspan="20" style="text-align: center;font-size:1.1rem;">No Adoption yet</td>

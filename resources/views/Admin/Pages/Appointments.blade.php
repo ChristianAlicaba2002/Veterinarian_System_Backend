@@ -20,7 +20,7 @@
     .cards {
       display: flex;
       gap: 25px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: center;
       margin-bottom: 40px;
     }
@@ -84,7 +84,6 @@
       border-collapse: collapse;
       font-size: 0.70rem;
     }
-
 
     @media (max-width: 768px) {
       .cards {
@@ -167,8 +166,8 @@
         </thead>
         <tbody>
           @if(count($grooming) > 0)
+          @foreach ($grooming as $appointment)
           <tr>
-            @foreach ($grooming as $appointment)
             <td>{{$appointment->client_id}}</td>
             <td>{{$appointment->first_name}}</td>
             <td>{{$appointment->last_name}}</td>
@@ -181,8 +180,8 @@
             <td>{{$appointment->appointment_time}}</td>
             <td>{{$appointment->groomer_name}}</td>
             <td>{{$appointment->notes}}</td>
-            @endforeach
           </tr>
+          @endforeach
           @else
           <td colspan="12" style="text-align: center; font-size: 1.1rem;">No Grooming yet</td>
           @endif
@@ -213,8 +212,8 @@
         </thead>
         <tbody>
           @if(count($checkUp) > 0)
+          @foreach ($checkUp as $appointment)
           <tr>
-            @foreach ($checkUp as $appointment)
             <td>{{ $appointment->owner_id }}</td>
             <td>{{ $appointment->owner_fullname }}</td>
             <td>{{ $appointment->owner_address }}</td>
@@ -229,8 +228,8 @@
             <td>{{ $appointment->checkup_type }}</td>
             <td>{{ $appointment->symptoms }}</td>
             <td>{{ $appointment->preferred_vet }}</td>
-            @endforeach
           </tr>
+          @endforeach
           @else
           <td colspan="14" style="text-align: center; font-size:1.1rem;">No Check up yet</td>
           @endif
@@ -245,7 +244,6 @@
         <thead>
           <tr>
             <th>Client ID</th>
-            <th>Client Name</th>
             <th>Fullname</th>
             <th>Email</th>
             <th>Phone Number</th>
@@ -256,53 +254,51 @@
             <th>Age</th>
             <th>Species</th>
             <th>Sex</th>
-            <th>Color</th>
             <th>Breed</th>
-            <th>Microchip Number</th>
-            <th>Neutered Spay</th>
-            <th>Speciel Markings</th>
             <th>Weight</th>
-            <th>Adoption Date</th>
+            <th>Special Markings</th>
+            <th>Microchip Number</th>
             <th>Status</th>
+            <th>Adoption Date</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
+          @if( count($adoptions) > 0)
+          @foreach($adoptions as $adoption)
           <tr>
-            @if( count($adoptions) > 0)
-            @foreach($adoptions as $adoption)
-            <td>{{$adoption->client_id }}</td>
+            <td>{{$adoption->client_id}}</td>
             <td>{{$adoption->first_name}} {{ $adoption->last_name }}</td>
             <td>{{ $adoption->email }}</td>
             <td>{{ $adoption->phone_number }}</td>
             <td>{{ $adoption->address }}</td>
-            <td>{{ $adoption->pet_id }}</td>
+            <td>{{ $adoption->pet_id}}</td>
             <td>
-              <img style="width: 20px; height: 20px;" src="{{asset('/images/' .  $adoption->image  )}}" alt="{{$adoption->Pet_Name}}" srcset="">
+              <img src="{{asset('/images/' . $adoption->image)}}" alt="{{$adoption->Pet_Name}}" style="width:50px;">  
             </td>
-            <td>{{$adoption->Age}}</td>
-            <td>{{$adoption->Species}}</td>
+            <td>{{ $adoption->Pet_Name }}</td>
+            <td>{{ $adoption->Age}}</td>
+            <td>{{ $adoption->Species }}</td>
             <td>{{ $adoption->Sex }}</td>
-            <td>{{ $adoption->Color }}</td>
             <td>{{ $adoption->Breed }}</td>
-            <td>{{ $adoption->Microchip_Number }}</td>
-            <td>{{ $adoption->Neutered_Spay }}</td>
-            <td>{{ $adoption->Special_Markings }}</td>
             <td>{{ $adoption->Weight }}</td>
-            <td>{{ $adoption->adoption_date }}</td>
-            <td>{{ $adoption->Status }}</td>
+            <td>{{ $adoption->Special_Markings}}</td>
+            <td>{{ $adoption->Microchip_Number}}</td>
+            <td style="color: {{ $adoption->Status == 'Available' ? 'green' : 'reed' }} ">
+              {{ $adoption->Status }}
+            </td>
+            <td>{{ $adoption->adoption_date}}</td>
             <td>
-              <form action="" method="post">
+              <form action="/rehomed.pets/{{$adoption->pet_id}}" method="post">
                 @csrf
                 <button type="submit">Re homed</button>
               </form>
             </td>
-            @endforeach
-            @else
-            <td colspan="20" style="text-align: center;font-size:1.1rem;">No Adoption yet</td>
-            @endif
           </tr>
-
+          @endforeach
+          @else
+          <td colspan="21" style="text-align: center;font-size:1.1rem;">No Adoption yet</td>
+          @endif
         </tbody>
       </table>
     </div>

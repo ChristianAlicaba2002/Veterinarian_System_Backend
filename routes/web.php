@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\PreventBackHistory;
 use App\Http\Controllers\Pets\PetController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\OwnerController;
 
 Route::get('/', function () {
     if (Auth::guard('web')->check()) {
@@ -58,3 +59,6 @@ Route::post('/logout', [AdminController::class, 'LogoutAdmin'])->name('admin.log
 
 //Pets Registration
 Route::post('/registerpet', [PetController::class, 'registerPet'])->name('admin.registerpet');
+
+//Adoption Pets
+Route::post('/rehomed.pets/{id}' , [OwnerController::class , 'ReHomedPets'])->name('rehomend.pets');

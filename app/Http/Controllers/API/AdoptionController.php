@@ -74,4 +74,6 @@ class AdoptionController extends Controller
             'data' => $adoptPet,
         ], 201);
     }
+
+
 }

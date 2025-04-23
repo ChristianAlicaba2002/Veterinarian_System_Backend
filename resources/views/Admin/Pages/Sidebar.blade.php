@@ -178,15 +178,33 @@
                 </a>
             </li>
             <li>
-                <a href="/allpets" class="nav-link sidebar-link" id="allPetsLink">
+                <a href="{{route('allpets')}}" class="nav-link sidebar-link" id="allPetsLink">
                     <i class="bi bi-heart"></i>
                     <span>Pets</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('petshistory')}}" class="nav-link sidebar-link" id="allPetsLink">
+                    <i class="bi bi-heart"></i>
+                    <span>Pet History</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('owner') }}" class="nav-link sidebar-link" id="allPetsLink">
                     <i class="bi bi-people"></i>
                     <span>Owners</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('userinformation')}}" class="nav-link sidebar-link">
+                    <i class="bi bi-people"></i>
+                    <span>User Information</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('adoptonhistory') }}" class="nav-link sidebar-link" id="allPetsLink">
+                    <i class="bi bi-people"></i>
+                    <span>Adoption History</span>
                 </a>
             </li>
             <li>
@@ -202,7 +220,7 @@
                 </a>
             </li>
             <li>
-                <a href="/addpets" class="nav-link sidebar-link" id="addPetLink">
+                <a href="{{route('addpets')}}" class="nav-link sidebar-link" id="addPetLink">
                     <i class="bi bi-plus-circle"></i>
                     <span>Adoption</span>
                 </a>

@@ -284,12 +284,12 @@
             <td>{{ $adoption->Weight }}</td>
             <td>{{ $adoption->Special_Markings}}</td>
             <td>{{ $adoption->Microchip_Number}}</td>
-            <td style="color: {{ $adoption->Status == 'Available' ? 'green' : 'reed' }} ">
+            <td style="color: {{ $adoption->Status == 'Available' ? 'green' : 'red' }} ">
               {{ $adoption->Status }}
             </td>
             <td>{{ $adoption->adoption_date}}</td>
             <td>
-              <form action="/rehomed.pets/{{$adoption->pet_id}}" method="post">
+              <form action="/rehomed.pets/{{$adoption->client_id}}" method="post">
                 @csrf
                 <button type="submit">Re homed</button>
               </form>

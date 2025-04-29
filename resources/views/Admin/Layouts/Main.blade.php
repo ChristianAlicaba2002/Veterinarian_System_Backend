@@ -2,174 +2,175 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VetCare Admin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
     <style>
+        :root {
+            --primary: #d59bf6;
+            --accent: #fae3ff;
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --glass-blur: blur(16px);
+        }
+
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #fef6ff, #f6f8ff);
+            margin: 0;
+            padding: 0;
+            color: #333;
         }
 
         .content-wrapper {
             margin-left: 250px;
+            padding: 2rem;
             transition: margin-left 0.3s ease;
-            background-color: #ffffff;
-            box-sizing: border-box;
         }
 
         .top-header {
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            padding: 0.5rem 1rem;
-            color: #512da8;
-            border-bottom: 2px solid #b39ddb;
+            padding: 1.5rem 0;
+            text-align: center;
         }
 
         .top-header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin: 0;
+            font-weight: 600;
+            font-size: 2.25rem;
+            color: #6b21a8;
+        }
+
+        .dashboard-row,
+        .mini-stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         .stats-card {
-            margin-top: 10rem;
-            border: 1px solid #d1c4e9;
-            border-radius: 1.5rem;
-            box-shadow: 0 0.75rem 1.5rem rgba(136, 153, 228, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: linear-gradient(135deg, #f3e5f5, #ffffff);
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            border-radius: 2rem;
             padding: 2rem;
-            height: 250px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            box-shadow: 0 8px 32px rgba(150, 90, 200, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
         }
 
         .stats-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 1rem 2rem rgba(136, 153, 228, 0.35);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(150, 90, 200, 0.2);
         }
 
         .card-icon {
-            width: 70px;
-            height: 70px;
+            background: var(--accent);
+            width: 64px;
+            height: 64px;
             display: flex;
-            align-items: center;
             justify-content: center;
-            border-radius: 1.25rem;
-            background: rgba(224, 191, 228, 0.2);
-            font-size: 2rem;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 0 auto 1rem;
         }
 
         .card-title {
+            font-size: 1.75rem;
             font-weight: 600;
-            color: #333;
-            font-size: 1.5rem;
+            color: #4b2b63;
         }
 
         .card-subtitle {
-            font-style: italic;
-            color: #666;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .card-text i {
+            margin-right: 4px;
+        }
+
+        .total-pets-card {
+            width: 100%;
+            max-width: 450px;
+            background: linear-gradient(to right, #fce7f3, #f3e8ff);
+            border: 2px solid #f6c9ff;
+        }
+
+        .mini-card {
+            width: 220px;
+            min-height: 220px;
+            border: 2px solid #f3d1ff;
         }
 
         @media (max-width: 768px) {
-            .sidebar {
-                margin-left: -250px;
-            }
-
             .content-wrapper {
                 margin-left: 0;
+                padding: 1rem;
             }
 
-            .sidebar.show {
-                margin-left: 0;
+            .dashboard-row,
+            .mini-stats-row {
+                flex-direction: column;
+                align-items: center;
             }
 
-            .content-wrapper.pushed {
-                margin-left: 250px;
+            .total-pets-card,
+            .mini-card {
+                width: 100%;
+                max-width: 100%;
             }
         }
     </style>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
     @include('Admin.Pages.Sidebar')
 
     <div class="content-wrapper">
-        <header class="top-header py-3 px-4 d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-                <button class="btn btn-sm btn-light d-md-none me-2" id="menu-toggle">
-                    <i class="bi bi-list"></i>
-                </button>
-                <h1 class="mb-0">Dashboard</h1>
-            </div>
+        <header class="top-header">
+            <h1>VetCare Dashboard</h1>
         </header>
 
-        <div class="container-fluid p-4">
-            <div class="row mb-4">
-                <div class="col-md-3 mb-3">
-                    <div class="stats-card card">
-                        <div class="card-body d-flex flex-column justify-content-between">
-                            <div>
-                                <h6 class="card-subtitle text-muted">Total Pets</h6>
-                                <h3 class="card-title">{{ $total }}</h3>
-                                <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i> 12.5% increase</p>
-                            </div>
-                            <div class="card-icon bg-primary bg-opacity-10 text-primary">
-                                <i class="bi bi-heart"></i>
-                            </div>
-                        </div>
+        <div class="container-fluid">
+            <div class="dashboard-row">
+                <div class="total-pets-card stats-card card">
+                    <div class="card-icon"><i class="bi bi-heart"></i></div>
+                    <div>
+                        <div class="card-subtitle">Total Pets</div>
+                        <div class="card-title">{{ $total }}</div>
+                        <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i>12.5% increase</p>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <div class="stats-card card">
-                        <div class="card-body d-flex flex-column justify-content-between">
-                            <div>
-                                <h6 class="card-subtitle text-muted">Owners</h6>
-                                <h3 class="card-title">{{$clients}}</h3>
-                                <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i> 8.3% increase</p>
-                            </div>
-                            <div class="card-icon bg-success bg-opacity-10 text-success">
-                                <i class="bi bi-people"></i>
-                            </div>
-                        </div>
+            </div>
+
+            <div class="mini-stats-row">
+                <div class="mini-card stats-card card">
+                    <div class="card-icon"><i class="bi bi-person-heart"></i></div>
+                    <div>
+                        <div class="card-subtitle">Owners</div>
+                        <div class="card-title">{{ count($owners) }}</div>
+                        <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i>9.2% increase</p>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <div class="stats-card card">
-                        <div class="card-body d-flex flex-column justify-content-between">
-                            <div>
-                                <h6 class="card-subtitle text-muted">Registered</h6>
-                                <h3 class="card-title">{{$clients}}</h3>
-                                <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i> 8.3% increase</p>
-                            </div>
-                            <div class="card-icon bg-success bg-opacity-10 text-success">
-                                <i class="bi bi-people"></i>
-                            </div>
-                        </div>
+
+                <div class="mini-card stats-card card">
+                    <div class="card-icon"><i class="bi bi-person-check"></i></div>
+                    <div>
+                        <div class="card-subtitle">Registered</div>
+                        <div class="card-title">{{ $clients }}</div>
+                        <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i>6.7% increase</p>
                     </div>
                 </div>
-        
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('menu-toggle')?.addEventListener('click', function() {
-                document.querySelector('.sidebar').classList.toggle('show');
-                document.querySelector('.content-wrapper').classList.toggle('pushed');
-            });
-        });
-    </script>
 </body>
 
 </html>

@@ -25,14 +25,14 @@ class ClientController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'No clients found'
-            ], 404);
+            ]);
         }
     
         return response()->json([
             'status' => true,
             'message' => 'Clients retrieved successfully',
             'data' => $clients
-        ], 200);
+        ]);
     }
 
     function CreateClient(Request $request)
@@ -107,11 +107,14 @@ class ClientController extends Controller
                 'message' => 'Account not found'
             ], 401);
         }
+        
+        $user = $client->createToken('Client Token')->plainTextToken;
 
         return response()->json([
             'status' => true,
+            
             'message' => 'Login successful',
-            'token' => $client->createToken('Client Token')->plainTextToken,
+            'token' => $user,
             'data' => $client
         ], 200);
     }
@@ -136,10 +139,4 @@ class ClientController extends Controller
 
         return $id;
     }
-
-    // public function GenerateClientId(int $length = 0): string
-    // {
-    //     $result = substr(bin2hex(random_bytes(ceil($length / 2))), 0, $length);
-    //     return $result;
-    // }
 }

@@ -21,13 +21,13 @@ class PetController extends Controller
         return Response()->json([
             'Status' => true,
             'Message' => 'Retrieve Data Successully',
-            'Data' => $pets
+            'data' => $pets
         ],200);
     }
 
     public function registerPet(Request $request)
     {
-        Validator::make($request->all(),[
+       $validator =  Validator::make($request->all(),[
             'Pet_Name' => 'required|string|max:255',
             'Species' => 'required|string|max:255',
             'Breed' => 'required|string|max:255',
@@ -35,12 +35,18 @@ class PetController extends Controller
             'Sex' => 'required|string|max:255',
             'Neutered_Spay' => 'required|string|max:255',
             'Color' => 'required|string|max:255',
-            'Weight' => 'required|string|max:255',
+            'Weight' => 'required|integer',
             'Special_Markings' => 'required|string|max:255',
-            'Microchip_Number' => 'required|string|max:255',
+            'Microchip_Number' => 'required|integer',
             'Image' => 'nullable|image',
             'Status' => 'required|string|max:255',
         ]);
+
+        if($validator->fails())
+        {
+            return redirect()->route('addpets')->with('error' , 'Required all fields');
+        }
+
 
         $data = [];
 
@@ -68,9 +74,9 @@ class PetController extends Controller
             $request->Microchip_Number,
             $data['Image'],
             $request->Status,
-        );   
+        );
 
-        return redirect('/main')->with('success' , 'Register Successfully');
+        return redirect()->route('addpets')->with('success' , 'Register Successfully');
     }
 
     public function GetTheGeneratePetId(): string
@@ -87,6 +93,27 @@ class PetController extends Controller
     {
         $result = random_int(111111,999999);
         return $result;
+    }
+
+
+    public function PetData(Pets $pet ,  $pet_id)
+    {
+        $petData = $pet::where('pet_id' , $pet_id)->get();
+
+        if(!$petData)
+        {
+            return Response()->json([
+                'status' => false,
+                'message' => 'Pet not found',
+            ]);
+        }
+
+
+        return Response()->json([
+            'status' => true,
+            'message' => 'Retrived Data',
+            'data' => $petData
+        ],201);
     }
 
 }

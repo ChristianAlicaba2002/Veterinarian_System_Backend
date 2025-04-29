@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('adoption', function (Blueprint $table) {
+        Schema::create('adoption_history', function (Blueprint $table) {
             $table->integer('client_id')->references('client_id')->on('clients')->onDelete('cascade');
             $table->string('first_name')->references('first_name')->on('clients')->onDelete('cascade');
             $table->string('last_name')->references('last_name')->on('clients')->onDelete('cascade');
@@ -37,10 +37,10 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.  
+     * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('adoption');
+        Schema::dropIfExists('adoption_history');
     }
 };

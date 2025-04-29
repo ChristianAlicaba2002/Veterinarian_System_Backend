@@ -12,7 +12,6 @@ class AdoptionController extends Controller
 
     public function CreateAdoption(Request $request, Adoption $adoption)
     {
-    
         $validator = Validator::make($request->all(), [
             'client_id' => 'required|integer',
             'first_name'  => 'required|string',
@@ -20,7 +19,7 @@ class AdoptionController extends Controller
             'email'  => 'required|email',
             'phone_number'  => 'required|string',
             'address'  => 'required|string',
-            'pet_id'  => 'required|string',
+            'pet_id'  => 'required|integer',
             'image'  => 'required|string',
             'Pet_Name'  => 'required|string',
             'Age'  => 'required|integer',
@@ -28,23 +27,23 @@ class AdoptionController extends Controller
             'Sex'  => 'required|string',
             'Color'  => 'required|string',
             'Breed'  => 'required|string',
-            'Microchip_Number'  => 'required|integer',
-            'Neutered_Spay'  => 'string',
+            'Microchip_Number'  => 'required|string',
+            'Neutered_Spay'  => 'required|string',
             'Special_Markings'  => 'required|string',
             'Weight'  => 'required|integer',
             'adoption_date'  => 'required|date_format:Y-m-d',
             'Status'  => 'required|string',
         ]);
 
-    
+
         if ($validator->fails()) {
             return Response()->json([
                 'status' => false,
                 'message' => $validator->errors(),
             ]);
         }
-       
-        $adoptPet = $adoption->create([
+
+        $adoptionPet = $adoption->create([
             'client_id' => $request->client_id,
             'first_name'  => $request->first_name,
             'last_name'  => $request->last_name,
@@ -64,15 +63,13 @@ class AdoptionController extends Controller
             'Special_Markings'  => $request->Special_Markings,
             'Weight'  => $request->Weight,
             'adoption_date'  => $request->adoption_date,
-            'Status '  => $request->Status
+            'Status'  => $request->Status
         ]);
-
-        dd($adoptPet);
 
         return Response()->json([
             'status' => true,
             'message' => 'Thank you for adopt our baby',
-            'data' => $adoptPet,
-        ], 201);
+            'data' => $adoptionPet,
+        ]);
     }
 }

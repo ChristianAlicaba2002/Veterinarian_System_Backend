@@ -27,7 +27,7 @@ class PetController extends Controller
 
     public function registerPet(Request $request)
     {
-        Validator::make($request->all(),[
+       $validator =  Validator::make($request->all(),[
             'Pet_Name' => 'required|string|max:255',
             'Species' => 'required|string|max:255',
             'Breed' => 'required|string|max:255',
@@ -41,6 +41,11 @@ class PetController extends Controller
             'Image' => 'nullable|image',
             'Status' => 'required|string|max:255',
         ]);
+
+        if($validator->fails())
+        {
+            return redirect()->route('addpets')->with('error' , 'Required all fields');
+        }
 
 
         $data = [];
@@ -71,7 +76,7 @@ class PetController extends Controller
             $request->Status,
         );
 
-        return redirect('/main')->with('success' , 'Register Successfully');
+        return redirect()->route('addpets')->with('success' , 'Register Successfully');
     }
 
     public function GetTheGeneratePetId(): string

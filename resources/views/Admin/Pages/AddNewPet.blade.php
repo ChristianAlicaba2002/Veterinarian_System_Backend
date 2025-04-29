@@ -167,6 +167,15 @@
 <body>
     @include('Admin.Pages.Sidebar')
 
+
+        @if(session('error'))
+            <script>alert("{{session('error')}}")</script>
+        @endif
+
+        @if(session('success'))
+            <script>alert("{{session('success')}}")</script>
+        @endif
+
     <div class="main-content">
         <div class="form-container">
             <div class="card-con" id="addPetSection">

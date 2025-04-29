@@ -12,7 +12,6 @@ class AdoptionController extends Controller
 
     public function CreateAdoption(Request $request, Adoption $adoption)
     {
-
         $validator = Validator::make($request->all(), [
             'client_id' => 'required|integer',
             'first_name'  => 'required|string',
@@ -28,7 +27,7 @@ class AdoptionController extends Controller
             'Sex'  => 'required|string',
             'Color'  => 'required|string',
             'Breed'  => 'required|string',
-            'Microchip_Number'  => 'required|integer',
+            'Microchip_Number'  => 'required|string',
             'Neutered_Spay'  => 'required|string',
             'Special_Markings'  => 'required|string',
             'Weight'  => 'required|integer',
@@ -44,7 +43,7 @@ class AdoptionController extends Controller
             ]);
         }
 
-        $adoptPet = $adoption->create([
+        $adoptionPet = $adoption->create([
             'client_id' => $request->client_id,
             'first_name'  => $request->first_name,
             'last_name'  => $request->last_name,
@@ -67,13 +66,10 @@ class AdoptionController extends Controller
             'Status'  => $request->Status
         ]);
 
-
         return Response()->json([
             'status' => true,
             'message' => 'Thank you for adopt our baby',
-            'data' => $adoptPet,
-        ], 201);
+            'data' => $adoptionPet,
+        ]);
     }
-
-
 }

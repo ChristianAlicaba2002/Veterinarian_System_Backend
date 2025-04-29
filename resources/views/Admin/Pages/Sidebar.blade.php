@@ -185,7 +185,7 @@
             </li>
             <li>
                 <a href="{{route('petshistory')}}" class="nav-link sidebar-link" id="allPetsLink">
-                    <i class="bi bi-heart"></i>
+                <i class="bi bi-clock-history"></i>
                     <span>Pet History</span>
                 </a>
             </li>
@@ -203,7 +203,7 @@
             </li>
             <li>
                 <a href="{{ route('adoptonhistory') }}" class="nav-link sidebar-link" id="allPetsLink">
-                    <i class="bi bi-people"></i>
+                <i class="bi bi-clock-history"></i>
                     <span>Adoption History</span>
                 </a>
             </li>
@@ -211,12 +211,6 @@
                 <a href="{{ route('appointments') }}" class="nav-link sidebar-link {{ request()->routeIs('appointments') ? 'active' : '' }}">
                     <i class="bi bi-calendar-check"></i>
                     <span>Appointments</span>
-                </a>
-            </li>
-            <li>
-                <a href="" class="nav-link sidebar-link {{ request()->routeIs('admin.settings') ? 'active' : '' }}">
-                    <i class="bi bi-gear"></i>
-                    <span>Settings</span>
                 </a>
             </li>
             <li>

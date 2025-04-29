@@ -15,89 +15,184 @@
       width: 100%;
       padding: 30px 15px;
       min-height: 100vh;
+      background-color: #f8f9fa;
     }
 
     .cards {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 25px;
-      flex-wrap: nowrap;
-      justify-content: center;
+      width: 100%;
+      max-width: 1200px;
       margin-bottom: 40px;
     }
 
     .card {
-      width: 240px;
+      background: white;
       padding: 25px;
-      background: linear-gradient(145deg, rgb(242, 218, 255), rgba(255, 177, 232, 0.4));
-      border-radius: 20px;
+      border-radius: 16px;
       text-align: center;
-      box-shadow: 0 8px 10px rgba(250, 185, 230, 0.6);
-      transition: 0.3s ease;
-      border: 2px solid rgb(182, 89, 140);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
     }
 
     .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(241, 144, 241, 0.15);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     }
 
     .card h6 {
-      color: rgb(200, 143, 223);
-      font-size: 1.5em;
+      color: #6c5ce7;
+      font-size: 1.1rem;
+      font-weight: 600;
       margin-bottom: 6px;
     }
 
     .card h3 {
-      color: #9b59b6;
-      font-size: 26px;
+      color: #2d3436;
+      font-size: 2rem;
+      font-weight: 700;
       margin-bottom: 8px;
     }
 
     .card p {
-      font-size: 14px;
+      font-size: 0.9rem;
+      color: #666;
       margin-bottom: 10px;
     }
 
     .card-icon {
-      font-size: 28px;
-      color: #9b59b6;
+      font-size: 2rem;
+      color: #6c5ce7;
+      margin-top: 1rem;
     }
 
     .table-container {
       display: none;
-      width: auto;
-      max-width: auto;
-      border: rgb(243, 211, 255) 1px solid;
-      border-radius: 20px;
-      box-shadow: 0 8px 16px rgba(255, 166, 243, 0.57);
+      width: 100%;
+      max-width: 1200px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       padding: 25px;
+      margin-top: 1rem;
     }
 
     .table-container h3 {
       text-align: center;
-      color: rgb(213, 93, 218);
+      color: #6c5ce7;
       margin-bottom: 20px;
+      font-weight: 600;
     }
 
     table {
       width: 100%;
-      border-collapse: collapse;
-      font-size: 0.70rem;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    tr:hover {
+      background-color: #f8f9fa;
+    }
+
+    .adoption-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .adoption-card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .adoption-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .adoption-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .adoption-card h4 {
+      color: #6c5ce7;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .adoption-card p {
+      margin: 5px 0;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .adoption-card .status {
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: 500;
+      margin: 10px 0;
+      background-color: #f8f9fa;
+    }
+
+    .rehome-btn {
+      background: #6c5ce7;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .rehome-btn:hover {
+      background: #5c4cd7;
+      transform: translateY(-2px);
     }
 
     @media (max-width: 768px) {
-      .cards {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .table-container {
-        width: auto;
+      .main-container {
         padding: 15px;
       }
 
-      table {
-        font-size: 0.75rem;
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .table-container {
+        padding: 15px;
+      }
+
+      .adoption-cards {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -240,67 +335,38 @@
 
     <div id="adoptionTable" class="table-container">
       <h3>Adoption Appointments</h3>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Client ID</th>
-            <th>Fullname</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Address</th>
-            <th>Pet ID</th>
-            <th>Image</th>
-            <th>Pet Name</th>
-            <th>Age</th>
-            <th>Species</th>
-            <th>Sex</th>
-            <th>Breed</th>
-            <th>Weight</th>
-            <th>Special Markings</th>
-            <th>Microchip Number</th>
-            <th>Status</th>
-            <th>Adoption Date</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          @if( count($adoptions) > 0)
+      <div class="adoption-cards">
+        @if(count($adoptions) > 0)
           @foreach($adoptions as $adoption)
-          <tr>
-            <td>{{$adoption->client_id}}</td>
-            <td>{{$adoption->first_name}} {{ $adoption->last_name }}</td>
-            <td>{{ $adoption->email }}</td>
-            <td>{{ $adoption->phone_number }}</td>
-            <td>{{ $adoption->address }}</td>
-            <td>{{ $adoption->pet_id}}</td>
-            <td>
-              <img src="{{asset('/images/' . $adoption->image)}}" alt="{{$adoption->Pet_Name}}" style="width:50px;">  
-            </td>
-            <td>{{ $adoption->Pet_Name }}</td>
-            <td>{{ $adoption->Age}}</td>
-            <td>{{ $adoption->Species }}</td>
-            <td>{{ $adoption->Sex }}</td>
-            <td>{{ $adoption->Breed }}</td>
-            <td>{{ $adoption->Weight }}</td>
-            <td>{{ $adoption->Special_Markings}}</td>
-            <td>{{ $adoption->Microchip_Number}}</td>
-            <td style="color: {{ $adoption->Status == 'Available' ? 'green' : 'red' }} ">
-              {{ $adoption->Status }}
-            </td>
-            <td>{{ $adoption->adoption_date}}</td>
-            <td>
+            <div class="adoption-card">
+              <img src="{{asset('/images/' . $adoption->image)}}" alt="{{$adoption->Pet_Name}}">
+              <h4>{{ $adoption->Pet_Name }}</h4>
+              <p><strong>Client:</strong> {{$adoption->first_name}} {{ $adoption->last_name }}</p>
+              <p><strong>Contact:</strong> {{ $adoption->email }} | {{ $adoption->phone_number }}</p>
+              <p><strong>Address:</strong> {{ $adoption->address }}</p>
+              <p><strong>Pet Details:</strong></p>
+              <p>Breed: {{ $adoption->Breed }}</p>
+              <p>Age: {{ $adoption->Age }}</p>
+              <p>Species: {{ $adoption->Species }}</p>
+              <p>Weight: {{ $adoption->Weight }}</p>
+              <p>Special Markings: {{ $adoption->Special_Markings}}</p>
+              <p>Microchip: {{ $adoption->Microchip_Number}}</p>
+              <div class="status" style="color: {{ $adoption->Status == 'Available' ? '#00b894' : '#e17055' }}">
+                Status: {{ $adoption->Status }}
+              </div>
+              <p><strong>Adoption Date:</strong> {{ $adoption->adoption_date}}</p>
               <form action="/rehomed.pets/{{$adoption->client_id}}" method="post">
                 @csrf
-                <button type="submit">Re homed</button>
+                <button type="submit" class="rehome-btn">Mark as Rehomed</button>
               </form>
-            </td>
-          </tr>
+            </div>
           @endforeach
-          @else
-          <td colspan="21" style="text-align: center;font-size:1.1rem;">No Adoption yet</td>
-          @endif
-        </tbody>
-      </table>
+        @else
+          <div class="adoption-card" style="text-align: center; grid-column: 1 / -1;">
+            <h4>No Adoption Appointments Yet</h4>
+          </div>
+        @endif
+      </div>
     </div>
   </div>
 

@@ -16,7 +16,7 @@ Route::get('/user', function (Request $request) {
 Route::post('/register', [ClientController::class, 'CreateClient']);
 Route::post('/login', [ClientController::class, 'LoginClient']);
 Route::post('/logout',[ClientController::class, 'LogoutClient']);
-Route::get('/clients', [ClientController::class, 'getAllClients']);
+Route::get('/clients', [ClientController::class, 'getAliClients']);
 
 //Pets API's
 Route::get('/Pets',[PetController::class , 'getAllPets']);

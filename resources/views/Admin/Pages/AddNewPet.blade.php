@@ -250,13 +250,13 @@
                                 </div>
                                 <div class="form-floating mb-2">
                                     <input type="number" class="form-control" placeholder="Enter Weight"
-                                        name="Weight" >
+                                        name="Weight" required>
                                     <label >Weight</label>
                                     <div class="invalid-feedback">Required</div>
                                 </div>
                                 <div class="form-floating mb-2">
                                     <input type="number" class="form-control" placeholder="Enter Microchip_Number"
-                                        name="Microchip_Number" >
+                                        name="Microchip_Number" required>
                                     <label >Microchip Number</label>
                                     <div class="invalid-feedback">Required</div>
                                 </div>

@@ -37,14 +37,18 @@ class PetController extends Controller
             'Color' => 'required|string|max:255',
             'Weight' => 'required|integer',
             'Special_Markings' => 'required|string|max:255',
-            'Microchip_Number' => 'required|integer',
+            'Microchip_Number' => 'required|string',
             'Image' => 'nullable|image',
             'Status' => 'required|string|max:255',
         ]);
 
         if($validator->fails())
         {
-            return redirect()->route('addpets')->with('error' , 'Required all fields');
+            // return redirect()->route('addpets')->with('error' , 'Required all fields');
+            return response()->json([
+                'status' => 'false',
+                $validator->errors()
+            ]);
         }
 
 

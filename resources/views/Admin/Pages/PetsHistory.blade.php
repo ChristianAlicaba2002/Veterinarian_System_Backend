@@ -14,8 +14,9 @@
 
         h1 {
             color: #d53f8c;
-            text-align: center;
+            text-align: left;
             margin-bottom: 30px;
+            margin-left: 10rem;
         }
 
         aside {
@@ -77,6 +78,34 @@
             font-size: 1.2rem;
             margin-top: 50px;
         }
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 10%;
+        }
+
+        .empty-state-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state-message {
+            color: var(--text-secondary);
+            max-width: 400px;
+        }
     </style>
 </head>
 <body>
@@ -84,7 +113,9 @@
         @include('Admin.Pages.Sidebar')
     </aside>
 
-    <h1>Pet History</h1>
+    @if(count($allPetHistory) > 0)
+        <h1>Pet History</h1>
+    @endif
 
     @if(count($allPetHistory) > 0)
         @foreach($allPetHistory as $PetHistory)
@@ -138,9 +169,12 @@
             </div>
         @endforeach
     @else
-        <div class="no-history">
-            <h1>No Pet History</h1>
-        </div>
+    <div class="empty-state">
+        <svg class="empty-state-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h2 class="empty-state-title">No Pets History</h2>
+    </div>
     @endif
 </body>
 </html>

@@ -35,3 +35,7 @@ Route::get('/checkUp' , [CheckUpController::class , 'getAllCheckUpAppointments']
 
 //Adoption Appointment API's
 Route::post('/adoption',[AdoptionController::class , 'CreateAdoption']);
+
+
+
+Route::get('/clienthistory',[ClientController::class, 'getAllClientAppointments']);

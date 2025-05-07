@@ -94,6 +94,35 @@
             margin-top: 2rem;
             color: #888;
         }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 15%;
+        }
+
+        .empty-state-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state-message {
+            color: var(--text-secondary);
+            max-width: 400px;
+        }
     </style>
 </head>
 
@@ -102,7 +131,9 @@
         @include('Admin.Pages.Sidebar')
     </aside>
     <main>
-        <h1>Adoption History</h1>
+        @if(count($alladoptionHistory) > 0)
+            <h1>Adoption History</h1>
+        @endif
 
         @if(count($alladoptionHistory) > 0)
             @foreach($alladoptionHistory as $adoptionHistory)
@@ -177,7 +208,12 @@
                 </div>
             @endforeach
         @else
-            <div class="empty-message">No adoption history yet.</div>
+        <div class="empty-state">
+                <svg class="empty-state-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h2 class="empty-state-title">No Adoption History yet</h2>
+            </div>
         @endif
     </main>
 </body>

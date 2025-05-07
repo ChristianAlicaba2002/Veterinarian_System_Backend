@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Client;
+use App\Models\Grooming;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Application\Client\RegisterClient;
+use App\Models\Adoption;
+use App\Models\CheckUp;
 
 class ClientController extends Controller
 {
@@ -16,6 +20,28 @@ class ClientController extends Controller
     {
         $this->RegisterClient = $RegisterClient;
     }
+
+    public function getAllClientAppointments(Request $request)
+    {
+        // Get the authenticated user
+        $user = Auth::user()->client_id;
+    
+        // Filter data based on the logged-in user's ID
+        $grooming = Grooming::where('client_id', $user->client_id)->get();
+        $checkUp = CheckUp::where('owner_id',$user->client_id)->get();
+        $adoption = Adoption::where('client_id',$user->client_id)->get();
+    
+        return response()->json([
+            'status' => true,
+            'message' => 'Success',
+            'data' => [
+                'grooming' => $grooming,
+                'owner_id' => $checkUp,
+                'adoption' => $adoption
+            ]
+        ]);
+    }
+    
 
     public function getAliClients()
     {
@@ -37,7 +63,8 @@ class ClientController extends Controller
 
     function CreateClient(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $sanitized = array_map('trim', $request->all());
+        $validator = Validator::make($sanitized, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|unique:clients,email',

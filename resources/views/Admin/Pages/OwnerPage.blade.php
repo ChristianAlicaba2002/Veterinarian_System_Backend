@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +15,9 @@
 
         h1 {
             color: #d53f8c;
-            text-align: center;
+            text-align: left;
             margin-bottom: 30px;
+            margin-left: 10rem;
         }
 
         aside {
@@ -29,7 +31,8 @@
             width: 90%;
         }
 
-        .owner-section, .pet-section {
+        .owner-section,
+        .pet-section {
             flex: 1;
             background-color: white;
             border-radius: 10px;
@@ -122,107 +125,143 @@
             background-color: #fee2e2;
             color: #991b1b;
         }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 10%;
+        }
+
+        .empty-state-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state-message {
+            color: var(--text-secondary);
+            max-width: 400px;
+        }
     </style>
 </head>
+
 <body>
     <aside>
         @include('Admin.Pages.Sidebar')
     </aside>
 
-    <h1>Owner & Pet Information</h1>
+    @if(count( $owners ) > 0)
+        <h1>Owners</h1>
+    @endif
 
     @if(count($owners) > 0)
-        <div class="container">
-            <div class="owner-section">
-                <h2 class="section-title">Owner Information</h2>
-                @foreach($owners as $owner)
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="field">
-                                <label>First Name</label>
-                                <span>{{ $owner->first_name }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Last Name</label>
-                                <span>{{ $owner->last_name }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Email</label>
-                                <span>{{ $owner->email }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Phone</label>
-                                <span>{{ $owner->phone_number }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Address</label>
-                                <span>{{ $owner->address }}</span>
-                            </div>
-                        </div>
+    <div class="container">
+        <div class="owner-section">
+            <h2 class="section-title">Owner Information</h2>
+            @foreach($owners as $owner)
+            <div class="card">
+                <div class="card-content">
+                    <div class="field">
+                        <label>First Name</label>
+                        <span>{{ $owner->first_name }}</span>
                     </div>
-                @endforeach
+                    <div class="field">
+                        <label>Last Name</label>
+                        <span>{{ $owner->last_name }}</span>
+                    </div>
+                    <div class="field">
+                        <label>Email</label>
+                        <span>{{ $owner->email }}</span>
+                    </div>
+                    <div class="field">
+                        <label>Phone</label>
+                        <span>{{ $owner->phone_number }}</span>
+                    </div>
+                    <div class="field">
+                        <label>Address</label>
+                        <span>{{ $owner->address }}</span>
+                    </div>
+                </div>
             </div>
+            @endforeach
+        </div>
 
-            <div class="pet-section">
-                <h2 class="section-title">Pet Information</h2>
-                @foreach($owners as $owner)
-                    <div class="card">
-                        <div class="card-header">
-                            <img src="{{asset('/images/' . $owner->image)}}" alt="{{ $owner->Pet_Name }}">
-                            {{ $owner->Pet_Name }} (ID: {{ $owner->pet_id }})
-                        </div>
-                        <div class="card-content">
-                            <div class="field">
-                                <label>Species</label>
-                                <span>{{ $owner->Species }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Breed</label>
-                                <span>{{ $owner->Breed }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Age</label>
-                                <span>{{ $owner->Age }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Sex</label>
-                                <span>{{ $owner->Sex }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Neutered/Spay</label>
-                                <span>{{ $owner->Neutered_Spay }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Color</label>
-                                <span>{{ $owner->Color }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Weight</label>
-                                <span>{{ $owner->Weight }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Special Markings</label>
-                                <span>{{ $owner->Special_Markings }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Microchip #</label>
-                                <span>{{ $owner->Microchip_Number }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Status</label>
-                                <span class="status-badge {{ $owner->Status ? 'status-inactive' : 'status-active' }}">
-                                    {{ $owner->Status ? 'Rehomed' : '' }}
-                                </span>
-                            </div>
-                        </div>
+        <div class="pet-section">
+            <h2 class="section-title">Pet Information</h2>
+            @foreach($owners as $owner)
+            <div class="card">
+                <div class="card-header">
+                    <img src="{{asset('/images/' . $owner->image)}}" alt="{{ $owner->Pet_Name }}">
+                    {{ $owner->Pet_Name }} (ID: {{ $owner->pet_id }})
+                </div>
+                <div class="card-content">
+                    <div class="field">
+                        <label>Species</label>
+                        <span>{{ $owner->Species }}</span>
                     </div>
-                @endforeach
+                    <div class="field">
+                        <label>Breed</label>
+                        <span>{{ $owner->Breed }}</span>
+                    </div>
+                    <div class="field">
+                        <label>Age</label>
+                        <span>{{ $owner->Age }}</span>
+                    </div>
+                    <div class="field">
+                        <label>Sex</label>
+                        <span>{{ $owner->Sex }}</span>
+                    </div>
+                    <div class="field">
+                        <label>Neutered/Spay</label>
+                        <span>{{ $owner->Neutered_Spay }}</span>
+                    </div>
+                    <div class="field">
+                        <label>Color</label>
+                        <span>{{ $owner->Color }}</span>
+                    </div>
+                    <div class="field">
+                        <label>Weight</label>
+                        <span>{{ $owner->Weight }}</span>
+                    </div>
+                    <div class="field">
+                        <label>Special Markings</label>
+                        <span>{{ $owner->Special_Markings }}</span>
+                    </div>
+                    <div class="field">
+                        <label>Microchip #</label>
+                        <span>{{ $owner->Microchip_Number }}</span>
+                    </div>
+                    <div class="field">
+                        <label>Status</label>
+                        <span class="status-badge {{ $owner->Status ? 'status-inactive' : 'status-active' }}">
+                            {{ $owner->Status ? 'Rehomed' : '' }}
+                        </span>
+                    </div>
+                </div>
             </div>
+            @endforeach
         </div>
+    </div>
     @else
-        <div class="no-history">
-            <h1>No Owner or Pet Information Available</h1>
-        </div>
+    <div class="empty-state">
+        <svg class="empty-state-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h2 class="empty-state-title">No Owners</h2>
+    </div>
     @endif
 </body>
+
 </html>

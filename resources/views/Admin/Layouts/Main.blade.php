@@ -143,7 +143,12 @@
                     <div>
                         <div class="card-subtitle">Total Pets</div>
                         <div class="card-title">{{ $total }}</div>
-                        <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i>12.5% increase</p>
+                        @if( $total > 0)
+                            <p class="card-text text-muted mb-0">Check your lovely pets</p>
+                        @else
+                        <p class="card-text text-muted mb-0">No pets available</p>
+                        @endif
+
                     </div>
                 </div>
             </div>
@@ -154,7 +159,17 @@
                     <div>
                         <div class="card-subtitle">Owners</div>
                         <div class="card-title">{{ count($owners) }}</div>
-                        <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i>9.2% increase</p>
+                        @if(count($owners) > 0)
+                        @php
+                            $percentage = $clients > 0 ? round((count($owners) / $clients) * 100) : 0;
+                        @endphp
+                        <p class="card-text text-{{ $percentage >= 50 ? 'success' : 'danger' }} mb-0">
+                            <i class="bi bi-arrow-{{ $percentage >= 50 ? 'up' : 'down' }}"></i>
+                            {{ number_format($percentage, 2) }}% of clients are owners
+                        </p>
+                        @else
+                        <p class="card-text text-muted mb-0">No data available</p>
+                        @endif
                     </div>
                 </div>
 
@@ -163,7 +178,18 @@
                     <div>
                         <div class="card-subtitle">Registered</div>
                         <div class="card-title">{{ $clients }}</div>
-                        <p class="card-text text-success mb-0"><i class="bi bi-arrow-up"></i>6.7% increase</p>
+                        @if($clients > 0 )
+                        @php
+                            $ownerCount = count($owners);
+                            $percentage = $ownerCount > 0 ? round(($clients / $ownerCount) * 100) : 0;
+                        @endphp
+                        <p class="card-text text-{{ $percentage >= 50 ? 'success' : 'danger' }} mb-0">
+                            <i class="bi bi-arrow-{{ $percentage >= 50 ? 'up' : 'down' }}"></i>
+                            {{ number_format($percentage, 2) }}% of owners are registered
+                        </p>
+                        @else
+                        <p class="card-text text-muted mb-0">No data available</p>
+                        @endif
                     </div>
                 </div>
             </div>

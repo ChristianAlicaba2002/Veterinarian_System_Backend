@@ -100,6 +100,7 @@
             justify-content: center;
             padding: 4rem 2rem;
             text-align: center;
+            margin-top: 10%;
         }
 
         .empty-state-icon {
@@ -143,7 +144,9 @@
 
     <div class="container">
         <div class="header">
-            <h1 class="page-title">User Information</h1>
+            @if(count($userregister) > 0)
+                <h1 class="page-title">User Information</h1>
+            @endif
         </div>
 
         @if(count($userregister) > 0)

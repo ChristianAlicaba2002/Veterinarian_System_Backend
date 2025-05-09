@@ -39,3 +39,4 @@ Route::post('/adoption',[AdoptionController::class , 'CreateAdoption']);
 
 
 Route::get('/clienthistory',[ClientController::class, 'getAllClientAppointments']);
+Route::put('/updateuserinformation',[ClientController::class , 'UpdateInformationClient']);

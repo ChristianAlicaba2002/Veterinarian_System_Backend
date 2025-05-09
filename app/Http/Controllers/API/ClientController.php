@@ -25,12 +25,12 @@ class ClientController extends Controller
     {
         // Get the authenticated user
         $user = Auth::user()->client_id;
-    
+
         // Filter data based on the logged-in user's ID
         $grooming = Grooming::where('client_id', $user->client_id)->get();
-        $checkUp = CheckUp::where('owner_id',$user->client_id)->get();
-        $adoption = Adoption::where('client_id',$user->client_id)->get();
-    
+        $checkUp = CheckUp::where('owner_id', $user->client_id)->get();
+        $adoption = Adoption::where('client_id', $user->client_id)->get();
+
         return response()->json([
             'status' => true,
             'message' => 'Success',
@@ -41,19 +41,19 @@ class ClientController extends Controller
             ]
         ]);
     }
-    
+
 
     public function getAliClients()
     {
         $clients = Client::all();
-    
+
         if ($clients->isEmpty()) {
             return response()->json([
                 'status' => false,
                 'message' => 'No clients found'
             ]);
         }
-    
+
         return response()->json([
             'status' => true,
             'message' => 'Clients retrieved successfully',
@@ -94,13 +94,59 @@ class ClientController extends Controller
                 'notes' => 'Whatever notes you want to add',
             ]);
 
+
             return response()->json([
                 'status' => true,
                 'message' => 'Client registered successfully',
                 'token' => $client->createToken('Client Token')->plainTextToken,
                 'data' => $client
             ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Registration Failed',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 
+    public function UpdateInformationClient(Request $request)
+    {
+        $sanitized = array_map('trim', $request->all());
+        $validator = Validator::make($sanitized, [
+            'client_id' => 'required',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:11',
+            'address' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Validation error',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $updateData = [
+            'client_id' => $request->client_id,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone_number' => $request->phone_number,
+            'address' => $request->address,
+        ];
+
+        try {
+            DB::table('clients')->where('client_id' , $request->client_id)->update($updateData);
+
+            $client = DB::table('clients')->where('client_id', $request->client_id)->first();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Updated Successfully',
+                'data' => $client,
+            ]);
 
         } catch (\Exception $e) {
             return response()->json([
@@ -134,12 +180,13 @@ class ClientController extends Controller
                 'message' => 'Account not found'
             ], 401);
         }
-        
+
         $user = $client->createToken('Client Token')->plainTextToken;
+
 
         return response()->json([
             'status' => true,
-            
+
             'message' => 'Login successful',
             'token' => $user,
             'data' => $client
@@ -154,12 +201,12 @@ class ClientController extends Controller
             'message' => 'Successfully logged out'
         ]);
     }
-    
+
 
     public function GetTheGenerateProductId(): string
     {
         do {
-            $id = random_int(111111,999999);
+            $id = random_int(111111, 999999);
             // Check if the generated ID already exists
             $exists = DB::table('clients')->where('client_id', $id)->first();
         } while ($exists !== null); // Ensure the ID is unique

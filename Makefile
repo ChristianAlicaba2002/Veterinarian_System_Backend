@@ -25,8 +25,6 @@ fresh:
 	@echo "Seeding the database..."
 	php artisan db:seed --class=AdminSeeder
 
-
-
 test:
 	@echo "Running tests..."
 	php artisan test
